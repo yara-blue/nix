@@ -2,7 +2,7 @@
 	environment.systemPackages = with pkgs; [
 		zoxide
 		git
-		exa
+		eza
 		bat
 		htop
 		btop
@@ -10,7 +10,7 @@
 		neomutt
 		fd
 		pass
-		gnupg2
+		gnupg
 		neovim
 		killall
 

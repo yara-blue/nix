@@ -1,9 +1,10 @@
 { pkgs, config, self, ...}: {
 	imports = [
 		./hardware.nix
-		# ./../../mixins/desktop-env.nix
-		# ./../../mixins/productivity.nix
-		./../../mixins/cli-tool.nix
+		./../../mixins/desktop-env.nix
+		./../../mixins/productivity.nix
+		./../../mixins/build-tools.nix
+		./../../mixins/cli-tools.nix
 	];
 
 

@@ -1,10 +1,9 @@
 { pkgs, lib, inputs, config, myOverlays, ... }: {
 	environment.systemPackages = with pkgs; [
-		alacritty
-		alacritty-theme
-		zed-editor
-		anki
-		audacity
-		vlc
+		gcc15
+		clang_20
+		gnumake
+		cmake
+		uv
 	];
 }
