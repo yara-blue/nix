@@ -5,5 +5,6 @@
 		gnumake
 		cmake
 		uv
+		typst
 	];
 }

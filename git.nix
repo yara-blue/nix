@@ -1,11 +1,15 @@
 { pkgs, ... }: {
 
+  home.shell.enableFishIntegration = true;
+
   programs = {
     zoxide = {
       enable = true;
       enableBashIntegration = true;
       enableFishIntegration = true;
     };
+
+	alacritty.theme = "solarized_light";
 
 	  git = {
 		enable = true;
@@ -30,10 +34,20 @@
 		 "gst" = "git status";
 		 "gp" = "git push";
 	   };
+		plugins = with pkgs.fishPlugins;
+		let mkPlugin = p: { inherit (p) src; name = "${p.pname}"; }; in
+		  (map mkPlugin [
+			puffer # (!! !$ ..+ etc)
+			done   # notify when long running command done
+			fish-you-should-use
+			colored-man-pages
+			autopair # try pisces?
+			sponge   # remove failed commands from history
+		 ]);
 	 };
-	# # soon
-    # jujutsu = {
-    #   enable = true;
-    # };
+	# soon
+    jujutsu = {
+      enable = true;
+    };
   };
 }

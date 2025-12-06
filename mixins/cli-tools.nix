@@ -13,6 +13,8 @@
 		gnupg
 		neovim
 		killall
+		fish
+		bash
 
 		curl
 		wget
