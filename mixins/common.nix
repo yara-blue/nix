@@ -13,27 +13,8 @@
 
 
 	environment.systemPackages = with pkgs; [
-		discord
-
-		alacritty
-		alacritty-theme
-
-		git
-		neovim
-		btop
-
-		zed-editor
-		pass
-		killall
-		bat
 		nix-output-monitor
-
-		curl
-		wget
-		ripgrep
-		fd
-		zoxide
-		efibootmgr
+		home-manager
 	];
 
   nixpkgs = { overlays = myOverlays; config.allowUnfree = true; };
