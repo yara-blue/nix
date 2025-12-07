@@ -11,7 +11,13 @@
 		rwaybar
 		kickoff
 		kickoff-dot-desktop
+
+		# broken, needs to be build with nightly
+		# for now manually installed
 		# break-enforcer
+
+		alsa-utils
+
 
 		tuigreet
 	];

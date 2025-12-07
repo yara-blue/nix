@@ -7,6 +7,12 @@
   pkgs,
 }:
 
+# let 
+# rustPlatform = pkgs.makeRustPlatform {
+# 	cargo = pkgs.rust-bin.stable.lastest.default;
+# 	rustVersion = pkgs.rust-bin.stable.lastest.default;
+# };
+# in {
 rustPlatform.buildRustPackage rec {
   pname = "break-enforcer";
   version = "0.3.2";

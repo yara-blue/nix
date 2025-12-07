@@ -34,6 +34,7 @@
 		 "gd" = "git diff";
 		 "gst" = "git status";
 		 "gp" = "git push";
+		 "v" = "nvim";
 	   };
 		plugins = with pkgs.fishPlugins;
 		let mkPlugin = p: { inherit (p) src; name = "${p.pname}"; }; in
@@ -43,7 +44,7 @@
 			fish-you-should-use
 			colored-man-pages
 			autopair # try pisces?
-			sponge   # remove failed commands from history
+			# sponge   # remove failed commands from history
 		 ]);
 	 };
 	# soon

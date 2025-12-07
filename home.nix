@@ -12,8 +12,16 @@
 
   imports = [
   	./git.nix
-	./sway.nix
+	# ./sway.nix # this is a disaster, wtf
   ];
+
+  home.pointerCursor = {
+	  gtk.enable = true;
+	  x11.enable = true;
+	  name = "WhiteSur-cursors";
+	  package = pkgs.whitesur-cursors;
+	  size = 24;
+  };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
