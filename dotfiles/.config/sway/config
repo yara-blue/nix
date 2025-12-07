@@ -26,13 +26,13 @@ set $term alacritty
 # gaps outer 4
 
 # Redshift
-exec --no-startup-id dunst
-exec --no-startup-id redshift -l 52.7:5.8
+# exec --no-startup-id dunst
+# exec --no-startup-id redshift -l 52.7:5.8
 # moved to systemd
-exec --no-startup-id ~/.cargo/bin/rwaybar 
-exec --no-startup-id /usr/bin/bash ~/.config/sway/wallpaper.sh
-exec --no-startup-id /usr/bin/bash ~/.config/sway/swap_colors.sh
-exec --no-startup-id /usr/bin/bash ~/bin/set_audio.sh
+exec --no-startup-id waybar
+# exec --no-startup-id /usr/bin/bash ~/.config/sway/wallpaper.sh
+# exec --no-startup-id /usr/bin/bash ~/.config/sway/swap_colors.sh
+# exec --no-startup-id /usr/bin/bash ~/bin/set_audio.sh
 
 # screen sharing
 exec /usr/libexec/xdg-desktop-portal -r
