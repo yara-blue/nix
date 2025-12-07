@@ -8,7 +8,7 @@
 		hyprpicker # color picker
 		kooha # screen recording
 
-		rwaybar
+		waybar
 		kickoff
 		kickoff-dot-desktop
 
