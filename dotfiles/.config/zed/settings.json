@@ -1,0 +1,175 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "excerpt_context_lines": 5,
+  "colorize_brackets": true,
+  "selection_highlight": true,
+  "rounded_selection": true,
+  "show_wrap_guides": true,
+  "agent_buffer_font_size": 20.0,
+  "tabs": {
+    "file_icons": false,
+    "git_status": false
+  },
+  "ui_font_weight": 400.0,
+  "format_on_save": "off",
+  "edit_predictions": {
+    "mode": "subtle"
+  },
+  "inlay_hints": {
+    "enabled": false
+    // "toggle_on_modifiers_press": {
+    //   "control": true
+    // }
+  },
+  "agent": {
+    "profiles": {
+      "tools-only": {
+        "name": "tools only",
+        "tools": {
+          "diagnostics": true,
+          "list_directory": true,
+          "grep": true,
+          "terminal": true,
+          "thinking": true,
+          "read_file": true
+        },
+        "enable_all_context_servers": false,
+        "context_servers": {}
+      }
+    },
+    "enable_feedback": false,
+    "always_allow_tool_actions": true,
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4-thinking"
+    },
+    "default_profile": "ask"
+  },
+  "minimap": {
+    "show": "never"
+  },
+  "tab_bar": {
+    "show": false,
+    "show_nav_history_buttons": false,
+    "show_tab_bar_buttons": false
+  },
+  "preview_tabs": {
+    "enabled": true,
+    "enable_keep_preview_on_code_navigation": true,
+    "enable_preview_from_file_finder": true
+  },
+  "ui_font_family": "CaskaydiaCovePL Nerd Font",
+  "base_keymap": "SublimeText",
+  "icon_theme": {
+    "mode": "system",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)"
+  },
+  "features": {
+    "edit_prediction_provider": "none"
+  },
+  "use_system_path_prompts": false,
+  "vertical_scroll_margin": 0,
+  "ui_font_size": 24.0,
+  "buffer_font_features": {
+    // Disable ligatures:
+    "calt": false
+  },
+  "buffer_font_family": "CaskaydiaCovePL Nerd Font",
+  "buffer_line_height": "standard",
+  "buffer_font_weight": 100.0,
+  "buffer_font_size": 23.0,
+  "theme": {
+    "mode": "light",
+    // This one is switched by bash script
+    "light": "Solarized Light",
+    "dark": "Gruvbox Dark Soft"
+  },
+  "terminal": {
+    "dock": "left",
+    "line_height": "standard"
+  },
+  "use_autoclose": false,
+  "gutter": {
+    // Whether to show line numbers in the gutter.
+    "line_numbers": true,
+    // Whether to show runnables buttons in the gutter.
+    "runnables": false,
+    // Whether to show breakpoints in the gutter.
+    "breakpoints": false,
+    // Whether to show fold buttons in the gutter.
+    "folds": false,
+    // Minimum number of characters to reserve space for in the gutter.
+    "min_line_number_digits": 3
+  },
+  "auto_install_extensions": {
+    "rust-analyzer": true
+  },
+  "vim_mode": true,
+  "vim": {
+    "toggle_relative_line_numbers": true
+  },
+  "cursor_blink": false,
+  "audio": {
+    "experimental.rodio_audio": true,
+    "experimental.auto_microphone_volume": false,
+    "experimental.auto_speaker_volume": false,
+    "experimental.legacy_audio_compatible": true,
+    "experimental.denoise": false
+  },
+  "soft_wrap": "editor_width",
+  "lsp": {
+    "rust-analyzer": {
+      "fetch": {
+        "pre_release": false
+      }
+    }
+  },
+  "calls": {
+    "mute_on_join": true
+  },
+  "theme_overrides": {
+    "Solarized Light": {
+      "accents": ["#59c7f1", "#eea4b2", "#f7f7f7", "#eea4b2"]
+    }
+  }
+
+  // "git": {
+  //   "git_hosting_providers": [
+  //     {
+  //       "provider": "gitlab",
+  //       "name": "Company GitLab",
+  //       "base_url": "https://gitlab.company.com"
+  //     }
+  //   ]
+  // }
+}
+
+// This might be bugged atm
+// "stable": {
+//   "experimental.theme_overrides": {
+//     "title_bar.background": "#121212"
+//   }
+// },
+// "nightly": {
+//   "experimental.theme_overrides": {
+//     "version_control.ignored": "#123456"
+//   }
+// },
+// "preview": {
+//   "experimental.theme_overrides": {
+//     "title_bar.background": "#397CE1"
+//   }
+// },
+// "dev": {
+//   "experimental.theme_overrides": {
+//     "title_bar.background": "#903050"
+//   }
+// }

@@ -1,0 +1,150 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Editor && (vim_mode == normal || vim_mode == visual)",
+    "bindings": {
+      "t": "vim::Right",
+      "s": "vim::Left"
+    }
+  },
+  // navigate between splits
+  // {
+  //   // TODO FIGURE OUT THIS BOOLEAN LOGIC
+  //   "context": "Pane && !(Editor && (vim_mode == normal))",
+  //   "bindings": {
+  //     "ctrl-n": "workspace::ActivatePaneUp",
+  //     "ctrl-m": "workspace::ActivatePaneDown",
+  //     "ctrl-e": "workspace::ActivatePaneLeft",
+  //     "ctrl-i": "workspace::ActivatePaneRight"
+  //   }
+  // },
+  {
+    "context": "!(Editor && (vim_mode == insert || vim_mode == waiting))",
+    "bindings": {
+      ";": "command_palette::Toggle",
+      // "ctrl t": "workspace::CloseAllDocks" // HELP why no work?
+    }
+  },
+  {
+    "context": "!(Editor && vim_mode == insert) && !Picker",
+    "bindings": {
+      "g f": "workspace::FollowNextCollaborator",
+      "space b": "tab_switcher::ToggleAll"
+    }
+  },
+  {
+    "context": "Editor && !Picker && (vim_mode == normal || vim_mode == visual || vim_mode == operator)",
+    "bindings": {
+      // remapping for colemak
+      "n": "vim::Up",
+      "m": "vim::Down",
+
+      "S": "vim::StartOfLine",
+      "T": "vim::EndOfLine",
+      "N": "vim::PageUp",
+      "M": "vim::PageDown",
+
+      "j": "vim::Substitute",
+      "h": "vim::MoveToNextMatch",
+
+      // I  dislike pressing shift
+      // ";": "command_palette::Toggle",
+      "Y": "vim::YankToEndOfLine",
+      ";": ["workspace::SendKeystrokes", ":"]
+    }
+  },
+  // Code navigation;
+  {
+    "context": "Editor && (vim_mode == normal || vim_mode == operator) && !Picker",
+    "bindings": {
+      "g c c": "editor::ToggleComments",
+      "g d": "editor::GoToDefinition",
+      "g t": "editor::GoToTypeDefinition",
+      "g r": "editor::FindAllReferences",
+      "g i": "editor::GoToImplementation",
+      "g c n": "collab::OpenChannelNotes",
+      "g c f": "collab_panel::ToggleFocus",
+      "g x": "pane::CloseActiveItem",
+      "k": "editor::Hover",
+      "ctrl-k": "editor::OpenDocs",
+      "space n": "editor::GoToDiagnostic",
+      "space p": "editor::GoToPreviousDiagnostic",
+      "space e": "diagnostics::Deploy",
+      "space l": "outline::Toggle"
+    }
+  },
+  // Code navigation
+  {
+    "context": "VimControl && !menu || ChangesList || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView || Welcome || Diagnostics || ThemePreview || KeymapEditor",
+    "bindings": {
+      "space space": ["workspace::SendKeystrokes", "ctrl-tab enter"],
+    }
+  },
+
+  // MultiCursor
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "g m": "editor::SelectAllMatches"
+    }
+  },
+
+  // Code actions
+  {
+    "context": "(Editor && vim_mode == normal) && !Picker",
+    "bindings": {
+      "g a": "editor::ToggleCodeActions",
+      "space a": "editor::ToggleCodeActions",
+      "space f": "editor::Format",
+      "g f": "workspace::FollowNextCollaborator"
+    }
+  },
+
+  {
+    "context": "Editor && vim_mode == operator && vim_operator == c",
+    "bindings": {
+      "r": "editor::Rename", // is triggers on cr
+      "l d": "workspace::ToggleLeftDock" // is triggers on cld
+    }
+  },
+
+  // Telescope
+  {
+    "context": "!Picker && !Terminal && !Editor || Editor && vim_mode == normal",
+    "bindings": {
+      // "j k": ["workspace::SendKeystrokes", "escape"]
+      "space o": "file_finder::Toggle",
+      "space r": "pane::DeploySearch"
+    }
+  },
+  // Close project search
+  {
+    "context": "ProjectSearchBar || KeyContextView",
+    "bindings": {
+      "g x": "pane::CloseActiveItem"
+    }
+  },
+  // navigate through project search
+  {
+    "context": "multibuffer",
+    "bindings": {
+      "down": "search::SelectNextMatch",
+      "up": "search::SelectPreviousMatch"
+    }
+  },
+  // store locations
+  {
+    "context": "!Picker && Editor && vim_mode == normal",
+    "bindings": {
+      "g b": "vim::PushMark",
+      "space m": "vim::ToggleMarksView"
+      // "g m": "vim::SelectRegister"
+    }
+  }
+]
