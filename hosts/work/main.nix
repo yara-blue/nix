@@ -2,11 +2,12 @@
 	imports = [
 		./hardware.nix
 		./../../mixins/desktop-env.nix
-		./../../mixins/productivity.nix
 		./../../mixins/build-tools.nix
 		./../../mixins/cli-tools.nix
 		./../../mixins/nfs.nix
 		./../../mixins/language-tools.nix
+		./../../mixins/graphical/productivity.nix
+		./../../mixins/graphical/common.nix
 	];
 
 
