@@ -3,6 +3,7 @@
 		firefox
 		alacritty
 		alacritty-theme
+		swappy # clipboard screenshot editor
 
 		zed-editor # cant log in
 		inputs.tracy.packages.${pkgs.system}.default

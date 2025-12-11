@@ -13,7 +13,7 @@ if [[ $2 == "clipboard" ]]; then
     output="- | wl-copy"
 else
     mkdir -p ~/Pictures/screenshots
-    output="-t png ~/Pictures/screenshots/$(date +%Y-%m-%d_%H:%M:%S).png"
+    output="-t png -l 9 ~/Pictures/screenshots/$(date +%Y-%m-%d_%H:%M:%S).png"
 fi
 
-echo "grim $geometry$output" | bash
+echo "grim -s 1.4 $geometry$output" | bash

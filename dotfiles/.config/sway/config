@@ -30,17 +30,17 @@ set $term alacritty
 # exec --no-startup-id redshift -l 52.7:5.8
 # moved to systemd
 exec --no-startup-id waybar
-exec --no-startup-id /usr/bin/bash ~/.local/bin/wallpaper.sh
+exec --no-startup-id wallpaper.sh
 # exec --no-startup-id /usr/bin/bash ~/.config/sway/swap_colors.sh
 # exec --no-startup-id /usr/bin/bash ~/bin/set_audio.sh
 
 # screen sharing
 # exec /usr/libexec/xdg-desktop-portal -r
-exec /usr/libexec/xdg-desktop-portal-wlr
+# exec /usr/libexec/xdg-desktop-portal-wlr
 
 # run a polkit auth agent 
 # (allows gui apps to ask for more permissions)
-exec --no-startup-id lxpolkit
+# exec --no-startup-id lxpolkit
 
 # exec "
 
@@ -68,7 +68,7 @@ output * scale 1.4
     bindsym $mod+q kill
 
     # Start your launcher
-    bindsym $mod+d exec /usr/bin/bash ~/.local/bin/launch_app.sh
+    bindsym $mod+d exec launch-app.sh
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.

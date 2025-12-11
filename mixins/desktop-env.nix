@@ -3,6 +3,7 @@
 	environment.systemPackages = with pkgs; [
 		grim # screenshot functionality
 		slurp # screenshot functionality
+		swaybg # wallpaper
 		wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
 
 		hyprpicker # color picker
