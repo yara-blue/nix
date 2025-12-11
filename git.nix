@@ -25,18 +25,6 @@
 
 	 fish = {
 	   enable = true;
-	   shellAbbrs = {
-		 # Git abbreviations
-		 "gau" = "git add --update";
-		 "ga" = "git add";
-		 "gcmsg" = "git commit -am";
-		 "gcob" = "git checkout -b";
-		 "gd" = "git diff";
-		 "gst" = "git status";
-		 "gp" = "git push";
-		 "v" = "nvim";
-		 "gpf" = "git push --force-with-lease";
-	   };
 		plugins = with pkgs.fishPlugins;
 		let mkPlugin = p: { inherit (p) src; name = "${p.pname}"; }; in
 		  (map mkPlugin [

@@ -5,6 +5,8 @@
 		./../../mixins/productivity.nix
 		./../../mixins/build-tools.nix
 		./../../mixins/cli-tools.nix
+		./../../mixins/nfs.nix
+		./../../mixins/language-tools.nix
 	];
 
 

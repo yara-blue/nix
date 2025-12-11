@@ -7,9 +7,20 @@
 		fish.enable = true;
 	};
 
-	environment.systemPackages = with pkgs; [
-		nix-output-monitor
-	];
+	environment.shellAliases = {
+	 # Git abbreviations
+	 "gau" = "git add --update";
+	 "ga" = "git add";
+	 "gcmsg" = "git commit -am";
+	 "gcob" = "git checkout -b";
+	 "gd" = "git diff";
+	 "gst" = "git status";
+	 "gp" = "git push";
+	 "gpf" = "git push --force-with-lease";
+
+	 # other
+	 "v" = "nvim";
+   };
 
 	fonts.packages = with pkgs; [
 	  noto-fonts

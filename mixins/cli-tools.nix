@@ -17,6 +17,9 @@
 		pinentry-tty
 
 		strace
+		nmap
+		samply
+		# tracy # needs 0.13 build complex though..
 
 		neovim
 		killall
@@ -24,6 +27,7 @@
 		zsh
 		bash
 
+		bind # contains nslookup, host, dig etc
 		curl
 		wget
 		efibootmgr
