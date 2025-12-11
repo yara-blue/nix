@@ -19,7 +19,6 @@
 		strace
 		nmap
 		samply
-		# tracy # needs 0.13 build complex though..
 
 		neovim
 		killall

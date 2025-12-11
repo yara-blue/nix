@@ -11,7 +11,8 @@
 		ragenix.url      = "github:yaxitech/ragenix";
 		home-manager.url = "github:nix-community/home-manager";
 		break-enforcer.url = "github:evavh/break-enforcer";
-		home-automation.url = "github:dvdsk/HomeAutomation";
+		home-automation.url = "github:yara-blue/HomeAutomation";
+		tracy.url = "github:tukanoidd/tracy.nix";
 		# break-enforcer.url = "path:/home/yara/bf/break-enforcer";
 
 		home-manager.inputs.nixpkgs.follows = "nixpkgs";

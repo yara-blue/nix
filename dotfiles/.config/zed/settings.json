@@ -87,10 +87,10 @@
   "buffer_font_weight": 100.0,
   "buffer_font_size": 23.0,
   "theme": {
-    "mode": "light",
+    "mode": "dark",
     // This one is switched by bash script
     "light": "Solarized Light",
-    "dark": "Gruvbox Dark Soft"
+    "dark": "Ayu Mirage"
   },
   "terminal": {
     "dock": "left",
