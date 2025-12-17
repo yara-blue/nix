@@ -17,12 +17,18 @@
 			user.name = "Yara";
 			user.email = "git@yara.blue";
 		};
-		# signing = { #soon tm 
+		ignores = [
+			".direnv"
+		];
+		# signing = { #soon tm
 		#   key = "git@yara.blue";
 		#   signByDefault = false;
 		# };
 	  };
 
+		direnv = {
+ 			enable = true;
+		};
 	 fish = {
 	   enable = true;
 		plugins = with pkgs.fishPlugins;

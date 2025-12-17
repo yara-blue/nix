@@ -21,6 +21,7 @@
 
 	 # other
 	 "v" = "nvim";
+	 "tt" = "trash put";
    };
 
 	fonts.packages = with pkgs; [
@@ -36,7 +37,7 @@
 	];
 
 	  environment.sessionVariables = {
-		VISUAL  = "zed-editor";
+		VISUAL  = "zeditor";
 		EDITOR = "nvim";
 	  };
 

@@ -48,7 +48,7 @@
     "always_allow_tool_actions": true,
     "default_model": {
       "provider": "zed.dev",
-      "model": "claude-sonnet-4-thinking"
+      "model": "claude-opus-4-5"
     },
     "default_profile": "ask"
   },
@@ -60,6 +60,7 @@
     "show_nav_history_buttons": false,
     "show_tab_bar_buttons": false
   },
+  "sticky_scroll": { "enabled": true },
   "preview_tabs": {
     "enabled": true,
     "enable_keep_preview_on_code_navigation": true,
@@ -138,6 +139,15 @@
   "theme_overrides": {
     "Solarized Light": {
       "accents": ["#59c7f1", "#eea4b2", "#f7f7f7", "#eea4b2"]
+    }
+  },
+
+  "languages": {
+    "Nix": {
+      "linked_edits": true,
+      "soft_wrap": "editor_width",
+      "tab_size": 2,
+      "language_servers": ["nil", "!nixd"]
     }
   }
 

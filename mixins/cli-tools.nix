@@ -1,6 +1,7 @@
 { pkgs, lib, inputs, config, myOverlays, ... }: {
 	environment.systemPackages = with pkgs; [
 		zoxide
+		direnv
 		git
 		eza
 		bat
@@ -32,12 +33,18 @@
 		efibootmgr
 
 		rmpc
+		mpc
 
 		# home automation
-		text-widget 
+		text-widget
 		ui
 
+		trashy
+
+		git-undeadname
+
 		nix-output-monitor
+		comma
 	];
 
 	services.pcscd.enable = true;
