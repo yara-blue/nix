@@ -36,6 +36,11 @@
 	  proggyfonts
 	];
 
+	# enable usb automount
+	services.devmon.enable = true;
+	services.gvfs.enable = true; 
+	services.udisks2.enable = true;
+
 	  environment.sessionVariables = {
 		VISUAL  = "zeditor";
 		EDITOR = "nvim";
