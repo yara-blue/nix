@@ -3,6 +3,7 @@
 let 
 	user = {
 		"work" = "yara-work";
+		"abydos" = "yara";
 	}."${hostname}";
 in {
 	systemd.user.enable = true;
