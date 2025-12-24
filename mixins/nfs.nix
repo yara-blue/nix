@@ -58,10 +58,6 @@ in
     device = "asgard:/srv/music";
     fsType = "nfs4";
   };
-  fileSystems."/home/yara/Videos/Series" = {
-    device = "asgard:/srv/videos/series";
-    fsType = "nfs4";
-  };
 
   environment.systemPackages = with pkgs; [
     kstart

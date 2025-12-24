@@ -66,6 +66,23 @@
   # Install firefox.
   programs.firefox.enable = true;
 
+  fileSystems."/home/yara/Videos/Series" = {
+    device = "asgard:/srv/videos/series";
+    fsType = "nfs4";
+  };
+  fileSystems."/home/yara/Share" = {
+    device = "asgard:/srv/share";
+    fsType = "nfs4";
+  };
+  fileSystems."/home/yara/Prive" = {
+    device = "asgard:/srv/prive";
+    fsType = "nfs4";
+  };
+  fileSystems."/home/yara/Photos" = {
+    device = "asgard:/srv/photos";
+    fsType = "nfs4";
+  };
+
   # Enable the gnome-keyring secrets vault.
   # Will be exposed through DBus to programs willing to store secrets.
   services.gnome.gnome-keyring.enable = true;
