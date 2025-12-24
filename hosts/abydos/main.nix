@@ -66,16 +66,20 @@
   # Install firefox.
   programs.firefox.enable = true;
 
+  fileSystems."/home/yara/Documents" = {
+    device = "asgard:/home/yara/Documents";
+    fsType = "nfs4";
+  };
+  fileSystems."/home/yara/Prive" = {
+    device = "asgard:/home/yara/prive";
+    fsType = "nfs4";
+  };
   fileSystems."/home/yara/Videos/Series" = {
     device = "asgard:/srv/videos/series";
     fsType = "nfs4";
   };
   fileSystems."/home/yara/Share" = {
     device = "asgard:/srv/share";
-    fsType = "nfs4";
-  };
-  fileSystems."/home/yara/Prive" = {
-    device = "asgard:/srv/prive";
     fsType = "nfs4";
   };
   fileSystems."/home/yara/Photos" = {

@@ -12,6 +12,7 @@
   users.users.yara.isNormalUser = true;
   users.defaultUserShell = pkgs.fish;
 
+
   programs = {
     fish.enable = true;
   };
@@ -50,6 +51,9 @@
   services.devmon.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
+
+  # Yubikey for ssh
+  services.udev.packages = [ pkgs.yubikey-personalization ];
 
   environment.sessionVariables = {
     VISUAL = "zeditor";
