@@ -16,4 +16,5 @@ require("treesitter")
 
 require("comp") -- completions and snippets
 require("lsp")
-require("debuggers") -- debugger adapter
+-- require("debuggers") -- debugger adapter
+

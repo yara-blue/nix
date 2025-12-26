@@ -24,6 +24,9 @@
 		samply
 
 		neovim
+
+		neomutt
+
 		killall
 		fish
 		zsh

@@ -55,12 +55,13 @@ vim.keymap.set('n', "r", [[<Plug>(leap-forward)]])
 vim.keymap.set('n', "R", [[<Plug>(leap-backward)]])
 
 -- Harpoon
+local harpoon = require("harpoon")
 for i = 1, 5, 1 do
-	local fn = function() require("harpoon.ui").nav_file(i) end
+	local fn = function() harpoon:list().select(i) end
 	vim.keymap.set('n', "<C-" .. tostring(i + 5) .. ">", fn)
 end
-vim.keymap.set({ 'n', 'i' }, "<A-7>", require "harpoon.mark".add_file)
-vim.keymap.set({ 'n', 'i' }, "<A-5>", require "harpoon.ui".toggle_quick_menu)
+vim.keymap.set({ 'n', 'i' }, "<A-7>", function() harpoon:list():add() end)
+vim.keymap.set({ 'n', 'i' }, "<A-5>", function() harpoon.ui.toggle_quick_menu(harpoon:list()) end)
 
 vim.keymap.set({ 'n', 'i' }, "<A-6>", func.open_terminal)
 

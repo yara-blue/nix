@@ -63,12 +63,13 @@ function M:lualine(theme)
 end
 
 require("fidget").setup{
-	window = {
-		relative = "win",
-		blend = 20,
-		zindex = nil,
+	notification = {
+		window = {
+			relative = "win",
+			winblend = 20,
+			zindex = nil,
+		}
 	}
-
 }
 
 return M

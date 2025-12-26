@@ -1,15 +1,14 @@
-require("mason").setup()
-require("mason-lspconfig").setup {
-	ensure_installed = { "lua_ls", "harper_ls" },
-}
+-- require("mason").setup()
+-- require("mason-lspconfig").setup {
+-- 	ensure_installed = { "lua_ls", "harper_ls" },
+-- }
 
 local function config_and_enable()
 	local capabilities = require("cmp_nvim_lsp").default_capabilities()
 	-- capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 	vim.lsp.config('rust-analyzer', {
-		-- cmd = { "rustup run stable rust-analyzer" },
-		cmd = { "/home/david/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rust-analyzer" },
+		cmd = { "rust-analyzer" },
 		root_markers = { 'Cargo.toml' },
 		filetypes = { 'rust' },
 		capabilities = capabilities,
@@ -31,6 +30,10 @@ local function config_and_enable()
 	vim.lsp.enable({'rust-analyzer'})
 end
 
+vim.lsp.enable("tinymist")
+vim.lsp.enable("lua_ls")
+vim.lsp.enable("nixd")
+
 config_and_enable()
 
 M = {}
@@ -48,7 +51,7 @@ function M.setup_rustc_dev()
 	vim.lsp.stop_client(vim.lsp.get_clients())
 	vim.lsp.start({
 		name = 'rust-analyzer',
-		cmd = {"/home/david/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rust-analyzer"},
+		cmd = {"rust-analyzer"},
 		capabilities = capabilities,
 		settings = {
 			["rust-analyzer"] = {
