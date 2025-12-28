@@ -32,7 +32,10 @@
     # other
     "v" = "nvim";
     "m" = "neomutt";
+
     "tt" = "trash put";
+	"ctrlc" = "wl-copy";
+	"ctrlv" = "wl-paste";
   };
 
   fonts.packages = with pkgs; [

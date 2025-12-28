@@ -26,7 +26,6 @@
 
 		neovim
 		websocat # used for typst preview from neovim
-
 		neomutt
 
 		killall
@@ -41,6 +40,8 @@
 
 		rmpc
 		mpc
+
+		numbat
 
 		# home automation
 		text-widget
