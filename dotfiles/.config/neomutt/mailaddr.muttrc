@@ -3,7 +3,8 @@ set realname = "Yara"
 set imap_user = `pass mail/imap_user`
 set imap_pass = `pass mail/login.mailbox.org | head -n 1`
 
-set smtp_url = "smtps:smtp.mailbox.org"
+set smtp_url = "smtps://smtp.mailbox.org"
+set smtp_url = `pass mail/smtp_url`
 set smtp_pass = `pass mail/login.mailbox.org | head -n 1`
 
 set folder = "imaps://imap.mailbox.org:993"
