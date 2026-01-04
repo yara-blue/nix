@@ -1,5 +1,4 @@
--- installs plugins
-require("plugins")
+-- plugins are installed and managed by nixOs
 
 require("settings")
 require("maps")
@@ -17,4 +16,5 @@ require("treesitter")
 require("comp") -- completions and snippets
 require("lsp")
 -- require("debuggers") -- debugger adapter
+
 

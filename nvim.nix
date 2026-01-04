@@ -48,6 +48,7 @@ programs.neovim = {
 	which-key-nvim
 	lsp_lines-nvim
 	fidget-nvim
+	nvim-lint
 
 	# Text tools
 	vim-easy-align
