@@ -57,7 +57,7 @@
   services.udisks2.enable = true;
 
   environment.sessionVariables = {
-    VISUAL = "zeditor";
+    VISUAL = "nvim";
     EDITOR = "nvim";
   };
 

@@ -54,6 +54,49 @@
 		backend = "gpg";
 		# yubikey backed signing subkey
 		key = "12A0067B454A920F";
+
+		  ui = {
+			paginate = "never";
+			# pager = "${pkgs.delta}/bin/delta";
+			# for delta
+			# diff-formatter = ":git";
+			diff-formatter = [
+			  "${pkgs.difftastic}/bin/difft"
+			  "--color=always"
+			  "$left"
+			  "$right"
+			];
+
+			default-command = [
+			  "log"
+			  "--reversed"
+			  "--no-pager"
+			];
+			merge-editor = [
+			  "${pkgs.meld}/bin/meld"
+			  "$left"
+			  "$base"
+			  "$right"
+			  "-o"
+			  "$output"
+			  "--auto-merge"
+			];
+
+			  revsets.log = "@ | ancestors(tronk()..(visible_heads() & mine()), 2) | tronk()";
+			# diff-editor = "${pkgs.meld}/bin/meld";
+		  };
+	
+		  git = {
+			private-commits = "description(glob:'wip:*') | description(glob:'trial:*')";
+			write-change-id-header = true;
+
+			fetch = [
+			  "upstream"
+			  "origin"
+			];
+			push = "origin";
+			auto-local-bookmark = true;
+		  };
       };
     };
   };

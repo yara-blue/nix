@@ -1,7 +1,7 @@
 { pkgs, lib, inputs, config, myOverlays, ... }: {
 	environment.systemPackages = with pkgs; [
 		# lsps
-		nixd # nix languge server
+		nixd # nix language server
 		rust-analyzer
 		typos-lsp
 		tinymist # typst language service

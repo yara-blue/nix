@@ -15,6 +15,8 @@
 		# broken see build effort in anki-widget/flake checkout on	#Work
 		# anki-widget
 
+		qbittorrent
+
 		audacity
 		vipsdisp
 		vlc
