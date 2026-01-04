@@ -6,7 +6,7 @@
 local function config_and_enable()
 	local capabilities = require("cmp_nvim_lsp").default_capabilities()
 	-- capabilities.textDocument.completion.completionItem.snippetSupport = true
-
+	--
 	vim.lsp.config('rust-analyzer', {
 		cmd = { "rust-analyzer" },
 		root_markers = { 'Cargo.toml' },
@@ -30,6 +30,14 @@ local function config_and_enable()
 	vim.lsp.enable({'rust-analyzer'})
 end
 
+vim.lsp.config("vale-ls", {
+	  cmd = { 'vale-ls' },
+	  filetypes = { 'asciidoc', 'markdown', 'text', 'tex', 'rst', 'html', 'xml' },
+	  -- root_markers = { '.vale.ini' },
+  }
+)
+-- vim.lsp.enable("vale-ls")
+vim.lsp.enable("codebook")
 vim.lsp.enable("tinymist")
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("nixd")
@@ -44,7 +52,7 @@ vim.lsp.config("typos-lsp", {
 		-- How typos are rendered in the editor, can be one of an Error,
 		-- Warning, Info or Hint. 
 		-- Defaults to Info.
-        diagnosticSeverity = "Info"
+        diagnosticSeverity = "Hint"
     }
 })
 vim.lsp.enable("typos-lsp")
@@ -62,55 +70,69 @@ function M.setup_rustc_dev()
 		return 
 	end
 
+	print(workspace)
+
 	-- stop all lsps (and thus rust-analyzer)
 	vim.lsp.stop_client(vim.lsp.get_clients())
 	vim.lsp.start({
+		-- use :LspLogs to view output
 		name = 'rust-analyzer',
-		cmd = {"rust-analyzer"},
+		-- cmd = {"env", "RA_LOG=debug", "rust-analyzer"},
+		cmd = { "rust-analyzer"},
+		root_dir = workspace,
 		capabilities = capabilities,
 		settings = {
 			["rust-analyzer"] = {
+				linkedProjects = {
+				  "Cargo.toml",
+				  "compiler/rustc_codegen_cranelift/Cargo.toml",
+				  "compiler/rustc_codegen_gcc/Cargo.toml",
+				  "library/Cargo.toml",
+				  "src/bootstrap/Cargo.toml",
+				  "src/tools/rust-analyzer/Cargo.toml"
+			  },
 				check = {
+					invocationLocation = "root",
 					invocationStrategy = "once",
 					overrideCommand = {
-						"python3",
-						"x.py",
+						"x",
 						"check",
+						"compiler",
+						"--build-dir", 
+						"build-rust-analyzer",
 						"--json-output"
 					},
 				},
-				linkedProjects = {
-					"Cargo.toml",
-					"compiler/rustc_codegen_cranelift/Cargo.toml",
-					"compiler/rustc_codegen_gcc/Cargo.toml",
-					"library/Cargo.toml",
-					"src/bootstrap/Cargo.toml",
-					"src/tools/rust-analyzer/Cargo.toml"
-				},
 				rustfmt = {
-					overrideCommand = {
-						workspace .. "/build/host/rustfmt/bin/rustfmt",
-						"--edition=2024"
-					}
+					overrideCommand = { 
+						"build/host/rustfmt/bin/rustfmt", 
+						"--edition=2024" 
+					},
 				},
 				procMacro = {
-					server = workspace .. "/build/host/stage0/libexec/rust-analyzer-proc-macro-srv",
+					server = "build/host/stage0/libexec/rust-analyzer-proc-macro-srv",
 					enable = true,
 				},
+				rustc = {
+					source = "./Cargo.toml",
+				},
 				cargo = {
+					sysrootSrc = "./library",
+					extraEnv = {
+						RUSTC_BOOTSTRAP = "1",
+					},
 					buildScripts = {
 						enable = true,
 						invocationStrategy = "once",
 						overrideCommand = {
-							"python3",
-							"x.py",
+							"x",
 							"check",
+							"compiler",
+							"--compile-time-deps",
+							"--build-dir",
+							"build-rust-analyzer",
 							"--json-output"
 						}
-					},
-					sysrootSrc = "./library",
-					extraEnv = {
-						RUSTC_BOOTSTRAP = "1",
 					},
 				},
 				server = {
@@ -125,5 +147,6 @@ function M.setup_rustc_dev()
 	-- local settings = vim.lsp.get_clients({ name = "rust_analyzer" })
 	-- print(vim.inspect(settings))
 end
+
 
 return M
