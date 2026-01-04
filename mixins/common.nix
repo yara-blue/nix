@@ -48,6 +48,7 @@
     mplus-outline-fonts.githubRelease
     dina-font
     proggyfonts
+	libertine
   ];
 
   # enable usb automount

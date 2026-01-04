@@ -41,9 +41,16 @@
 		nativeMessagingHosts = [ pkgs.passff-host ];
 		profiles.default = {
 			id = 0;
-			name = "Default";
+			name = "default";
+			isDefault = true;
+			search = {
+				force = true;
+				default = "ddg";
+				order = ["ddg" "google" ];
+			};
 			settings = {
 				extensions.autoDisableScopes = 0;
+				browser.search.defaultenginename = "ddg";
 			};
 			extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
 				ublock-origin

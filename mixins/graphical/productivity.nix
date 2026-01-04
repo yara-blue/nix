@@ -6,6 +6,8 @@
 		inkscape
 		# inputs.zed.packages.${pkgs.system}.default
 
+		libreoffice
+
 		sqlitebrowser
 		gnome-disk-utility
 

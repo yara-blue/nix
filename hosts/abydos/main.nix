@@ -56,7 +56,7 @@
   users.users.yara = {
     isNormalUser = true;
     description = "Yara";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "storage"];
   };
 
   # Install firefox.

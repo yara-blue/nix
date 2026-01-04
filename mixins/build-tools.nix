@@ -7,7 +7,9 @@
 		ninja
 		pkg-config
 		uv
+
 		typst
+
 		texliveFull
 	];
 }
