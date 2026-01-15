@@ -5,6 +5,7 @@
 		git
 		eza
 		bat
+		usbutils
 		htop
 		btop
 		dua 			# disk usage
@@ -58,7 +59,8 @@
     
     # Yubikey
 	services.pcscd.enable = true;
-    services.udev.packages = [ pkgs.yubikey-personalization ];
+	# Yubikey and also software defined radio
+    services.udev.packages = [ pkgs.yubikey-personalization pkgs.rtl-sdr pkgs.gqrx ];
 
 	programs.gnupg.agent = {
 		enable = true;

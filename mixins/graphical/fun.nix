@@ -4,5 +4,9 @@
 		freetube
 		steam
 		telegram-desktop
+		
+		# software defined radio
+		gqrx
+		rtl-sdr
 	];
 }

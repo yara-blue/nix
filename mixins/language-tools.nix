@@ -8,5 +8,6 @@
 		lua51Packages.lua-lsp # neovim targets lua 5.1
 		vale-ls # prose checker
 		codebook # spell checker
+		pegviz # visualizer for peg parser
 	];
 }
