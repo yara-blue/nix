@@ -11,11 +11,11 @@ rustPlatform.buildRustPackage rec {
   src = fetchFromGitHub {
     owner = "fasterthanlime";
     repo = "pegviz";
-    rev = "v${version}";
-    hash = "sha256-H22rgWMe80GTRBU5CqzTRQoD4tNqbebIjdhb3o6TCCQ=";
+    rev = "29834448d952c2cc9cb7a3a117395b5617b349f0";
+    hash = "sha256-2ELin2JLT0hDSpkG4yQ7/i78enPo9T21MIeSKwS2Mgw=";
   };
 
-  cargoHash = "sha256-nyqsEzFlTxJeOrcIiXPj8jY/zdLYjpjpArsKUCDkffU=";
+  cargoHash = "sha256-YrJs83pfqxaClEqjyXJ3IUDA+cI+b+4DkldgAcid4cw=";
 
   meta = {
     description = "A visualizer for the rust peg parser traces";
