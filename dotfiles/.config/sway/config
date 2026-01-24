@@ -50,6 +50,11 @@ include /etc/sway/config-vars.d/*
 #
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 output * scale 1.4
+output HDMI-A-1 {
+	mode 3840x2160@120Hz
+	render_bit_depth 10
+	# hdr off
+}
 #
 # Example configuration:
 #
@@ -69,6 +74,9 @@ output * scale 1.4
 
     # Start your launcher
     bindsym $mod+d exec launch-app.sh
+
+	# # Toggle HDR
+	# bindsym $mod+w swaymsg output HDMI-A-1 hdr toggle
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.

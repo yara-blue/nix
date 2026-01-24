@@ -9,6 +9,7 @@
 		hyprpicker # color picker
 		kooha # screen recording
 
+		inputs.nixpkgs-wayland.packages.${system}.sway-unwrapped
 		waybar
 		kickoff
 		kickoff-dot-desktop
