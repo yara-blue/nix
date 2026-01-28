@@ -11,6 +11,9 @@
 
 		inputs.nixpkgs-wayland.packages.${system}.sway-unwrapped
 		waybar
+		# widgets
+		text-widget
+
 		kickoff
 		kickoff-dot-desktop
 

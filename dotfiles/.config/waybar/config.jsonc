@@ -17,6 +17,7 @@
         "clock"
     ],
     "modules-right": [
+		"custom/ha-text-widget",
         "pulseaudio"
     ],
     "sway/mode": {
@@ -46,6 +47,10 @@
     },
 	"custom/break-enforcer": {
 		"exec": "/run/current-system/sw/bin/break-enforcer status --update-period 1s",
+		"format": "{}"
+	},
+	"custom/ha-text-widget": {
+		"exec": "/run/current-system/sw/bin/ha-text-widget --server 192.168.1.43:1235 temp hum co2 pm25",
 		"format": "{}"
 	}
 }
