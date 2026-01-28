@@ -2,8 +2,9 @@
 	environment.systemPackages = with pkgs; [
 		kodi
 		freetube
+		# gaming
 		steam
-		telegram-desktop
+		prismlauncher
 		
 		# software defined radio
 		gqrx

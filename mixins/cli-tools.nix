@@ -48,6 +48,8 @@
 		text-widget
 		ui
 
+		mc-player-count
+
 		trashy
 
 		git-undeadname
