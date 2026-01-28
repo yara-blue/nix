@@ -53,7 +53,7 @@ output * scale 1.4
 output HDMI-A-1 {
 	mode 3840x2160@120Hz
 	render_bit_depth 10
-	# hdr off
+	hdr off
 }
 #
 # Example configuration:

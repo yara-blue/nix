@@ -35,7 +35,9 @@
     enable = true;
     settings = rec {
       initial_session = {
-		command = "${pkgs.sway}/bin/sway";
+		command =
+		"${inputs.nixpkgs-wayland.packages.x86_64-linux.sway-unwrapped}/bin/sway";
+		# command = "${pkgs.sway}/bin/sway";
 		user = "yara";
       };
       default_session = initial_session;
@@ -48,6 +50,10 @@
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
+	extraSessionCommands = ''
+		export MOZ_ENABLE_WAYLAND=1
+		export WLR_RENDERER=vulkan
+	'';
   };
 
   # xdg = {
