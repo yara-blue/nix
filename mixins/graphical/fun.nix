@@ -2,6 +2,8 @@
 	environment.systemPackages = with pkgs; [
 		kodi
 		freetube
+		telegram-desktop
+
 		# gaming
 		steam
 		prismlauncher
