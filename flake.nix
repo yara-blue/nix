@@ -7,12 +7,15 @@
 	inputs = {
 		nixpkgs.url      = "github:NixOS/nixpkgs/nixos-unstable";
 		nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
-
-
 		rahul-config.url = "github:rrbutani/nix-config";
 		flake-utils.url  = "github:numtide/flake-utils";
 		ragenix.url      = "github:yaxitech/ragenix";
+		ragenix.inputs.nixpkgs.follows = "nixpkgs";
+		agenix-rekey.url = "github:oddlama/agenix-rekey";
+		agenix-rekey.inputs.nixpkgs.follows = "nixpkgs";
+
 		home-manager.url = "github:nix-community/home-manager";
+		home-manager.inputs.nixpkgs.follows = "nixpkgs";
 		break-enforcer.url = "github:evavh/break-enforcer";
 		home-automation.url = "github:yara-blue/HomeAutomation";
 		tracy.url = "github:tukanoidd/tracy.nix";
@@ -24,10 +27,9 @@
 		zed.inputs.nixpkgs.follows = "nixpkgs";
 		# break-enforcer.url = "path:/home/yara/bf/break-enforcer";
 
-		home-manager.inputs.nixpkgs.follows = "nixpkgs";
 	};
 
-	outputs = { ragenix, flake-utils, home-manager, rahul-config, nixpkgs, self,
+	outputs = { ragenix, agenix-rekey, flake-utils, home-manager, rahul-config, nixpkgs, self,
 	break-enforcer, home-automation, ... } @ inputs:
 	let
 	  inherit (nixpkgs) lib;
@@ -50,6 +52,8 @@
 			modules = [
 				system_module
 				./mixins/common.nix
+				ragenix.nixosModules.default
+				agenix-rekey.nixosModules.default
 				home-manager.nixosModules.home-manager {
 					home-manager.useGlobalPkgs = true;
 					home-manager.useUserPackages = true;
@@ -67,6 +71,11 @@
 		 nixosConfigurations = {
 			 Work = machine "x86_64-linux" "work";
 			 Abydos = machine "x86_64-linux" "abydos";
+		 };
+
+		 agenix-rekey = agenix-rekey.configure {
+			 userFlake = self;
+			 nixosConfigurations = self.nixosConfigurations;
 		 };
 
 		overlays.default = final: _: listDir {
