@@ -36,7 +36,9 @@
 	  listDir = rahul-config.lib.util.list-dir;
 
 		myOverlays = [
-		  self.overlays.default ragenix.overlays.default
+		  self.overlays.default 
+		  ragenix.overlays.default
+		  agenix-rekey.overlays.default
 		  break-enforcer.overlays.default # makes break-enforcer available under pkgs
 		  home-automation.overlays.default
 		];
@@ -91,5 +93,15 @@
         (filterAttrs (_: p: !(p.meta.broken or false)))
       ];
     })
-  );
+  ) // (flake-utils.lib.eachDefaultSystem (system: rec {
+		pkgs = import nixpkgs {
+		  inherit system;
+		  overlays = [ agenix-rekey.overlays.default ];
+		};
+		  devShells.default = pkgs.mkShell {
+			  packages = [ pkgs.agenix-rekey ];
+
+		  };
+	  }));
+  
 }

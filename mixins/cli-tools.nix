@@ -20,6 +20,8 @@
 		gnupg
 		pinentry-tty
 		yubikey-personalization
+		age-plugin-yubikey
+		agenix-rekey
 
 		strace
 		nmap

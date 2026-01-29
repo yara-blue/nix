@@ -45,7 +45,7 @@
   };
 
 	# stores secrets in pass password store
-	services.passSecretService.enable = true;
+  services.passSecretService.enable = true;
   security.polkit.enable = true;
   programs.sway = {
     enable = true;
