@@ -10,6 +10,7 @@
 
 		sqlitebrowser
 		gnome-disk-utility
+		gparted
 
 		anki
 		# broken see build effort in anki-widget/flake checkout on	#Work
