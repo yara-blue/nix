@@ -52,10 +52,21 @@
     #media-session.enable = true;
   };
 
+  services.openssh = {
+	  enable = true;
+	  settings = {
+		  PasswordAuthentication = false;
+		  KbdInteractiveAuthentication = false;
+		  PermitRootLogin = "no";
+		  AllowUsers = [ "yara" ];
+      };
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.yara = {
     isNormalUser = true;
     description = "Yara";
+	openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKked5UDb893TUhcatCEqcUWqZE0dbfnoG4UjJQtXXnC"];
     extraGroups = [ "networkmanager" "wheel" "storage" "plugdev" ];
   };
 
