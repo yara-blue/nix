@@ -41,4 +41,9 @@ in
     fsType = "zfs";
     options = [ "zfsutil" ];
   };  
+  fileSystems."/home/yara/tmp" = {
+    device = "home/tmp";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };  
 }

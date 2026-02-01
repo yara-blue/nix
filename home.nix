@@ -41,8 +41,14 @@
 	  enableBashIntegration = true;
 	  enableFishIntegration = true;
 	  settings = {
+		  prefers_reduced_motion = true;
+		  enter_accept = true;
 		  inline_height = 0; # https://github.com/atuinsh/atuin/issues/2207
+		  filter_mode_shell_up_key_binding = "directory";
 		  style = "full";
+		  history_filter = [
+		  	"^z"
+		  ];
 	  };
   };
 
