@@ -5,20 +5,20 @@ local util = require("util")
 M = {}
 
 -- largest chunk of changes that a single author worked on
-function jj_changes_for_author_in_last_n_changes(n) 
-	local n = n or 1
-
+function jj_commits_for_author_in_last_n_commits(n) 
 	-- also trim trailing \n from system
 	local user_name = vim.fn.system("jj config get user.name")
 	local user_name = string.sub(user_name, 0, string.len(user_name) - 1) 
 	local user_email = vim.fn.system("jj config get user.email")
 	local user_email = string.sub(user_email, 0, string.len(user_email) - 1)
 
-	local template = [['stringify(self.change_id()) ++ "\t" ++ self.author().name() ++ "\t" ++ self.author().email()']]
+	local template = [['stringify(self.commit_id()) ++ "\t" ++ self.author().name() ++ "\t" ++ self.author().email()']]
+
 	local lines = vim.fn.system("jj log -r 'ancestors(@, "..n..") | @' --template " .. template)
 
 	local res = {}
 	for line in vim.gsplit(lines, "\n") do
+		-- limit lines we'll check
 		if n == 0 then break else n = n - 1 end
 
 		local line = vim.split(line, "\t")
@@ -27,24 +27,27 @@ function jj_changes_for_author_in_last_n_changes(n)
 		end
 
 		-- chop off: `@  ` and `◆  `
-		local without_header = vim.split(line[1], "  ")[2]
-		res[without_header] = true
+		local without_header = string.match(line[1], "%w+")
+		if without_header then
+			res[without_header] = true
+		end
 	end
 	
 	return res
 end
 
-function jj_changes_for_author() 
-	-- TODO replace with jj -r 'reachable(@, mine())'
-
-	-- limit number of commits to return, speeds up 
-	-- on huge repos
+function jj_commits_for_author() 
+	-- we could do this with jj -r 'reachable(@, mine())'
+	-- however that gets slow on large repos, even if we limit it to a small
+	-- number of ancestors of `@`
+	--
+	-- instead we limit number of changes to return and check ourselves
 	local check_back = {20, 100, 500, 9999999}
 
-	for _, max_changes in ipairs(check_back) do
-		local changes = jj_changes_for_author_in_last_n_changes(max_changes)
-		if #changes < max_changes then
-			return changes
+	for _, max_commits in ipairs(check_back) do
+		local commits = jj_commits_for_author_in_last_n_commits(max_commits)
+		if table_len(commits) < max_commits then
+			return commits
 		end
 	end
 end
@@ -86,40 +89,37 @@ end
 -- returns a table of lines with keys: path, linenumber, line
 function jj_diff() 
 	local res = {}
-	local allowed_changes = jj_changes_for_author()
-	local revset = to_revset_string(allowed_changes)
+	local allowed_commits = jj_commits_for_author()
+	local revset = to_revset_string(allowed_commits)
 
-	local template = [['stringify(self.commit().change_id()) ++ "\t" ++ self.line_number() ++ "\t" ++ self.content()']]
-	local ancestors = math.max(0, table_len(allowed_changes) - 1)
+	local template = [['stringify(self.commit().commit_id()) ++ "\t" ++ self.line_number() ++ "\t" ++ self.content()']]
+	local ancestors = math.max(0, table_len(allowed_commits) - 1)
 	local files = vim.fn.system("jj diff --name-only -r \'".. revset .. "\'")
-	print("files: " .. vim.inspect(files))
 
 	if string.len(files) > 1000 then
 		error("too many files to inspect, would freeze nvim!")
 	end
 
+	-- uncommitted work is shown under this commit in git blame
+	allowed_commits["0000000000000000000000000000000000000000"] = true
+
 	for file in vim.gsplit(files, "\n") do
 		if string.len(file) == 0 then -- trailing \n
 			break
 		end
-		print("file: " ..file)
-		-- Super super slow in large repo's
-		local lines = vim.fn.system("jj file annotate -T ".. template .. " " .. file)
-		print("done getting lines")
-		for line in vim.gsplit(lines, "\n", { trimempty=true }) do 
-			if string.len(file) == 0 then -- last one is nil due to ending \n
-				break
-			end
-			print("handling: ".. line)
+		local lines = vim.fn.system("git blame -l ".. file)
+		for line in vim.gsplit(lines, "\n") do
+			local commit_id = vim.split(line, " ")[1]
+			if allowed_commits[commit_id] then 
+				local meta_and_content = vim.split(line, ") ")
+				local meta = meta_and_content[1]
+				local content = meta_and_content[2]
+				local unindented = content:gsub("^%s*(.-)%s*$", "%1")
+				local row = string.match(meta, "%d+$")
 
-			local annotations = vim.split(line, "\t")
-			print("done splitting")
-			local change = annotations[1]
-			if allowed_changes[change] then 
-				local unindented = annotations[3]:gsub("^%s*(.-)%s*$", "%1")
 				res[#res+1] = {
 					["path"] = file, 
-					["lnum"] = tonumber(annotations[2]), 
+					["lnum"] = tonumber(row), 
 					["content"] = unindented
 				}
 			end
@@ -181,10 +181,9 @@ function M.change_diff_scope()
 	}):find()
 end
 
--- M.change_diff_scope()
-jj_diff()
+M.change_diff_scope()
 -- print(vim.inspect(jj_diff()))
 -- print(vim.inspect(jj_changes_for_last_n(2)))
--- print(vim.inspect(jj_changes_for_author()))
+-- print(vim.inspect(jj_commits_for_author()))
 -- print(shorten_path("/hello/long/path/file.rs", 10))
 -- print(shorten_path("tests/ui/suggestions/suggest-private-field.rs", 10))
