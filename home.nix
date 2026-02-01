@@ -40,6 +40,10 @@
 	  enable = true;
 	  enableBashIntegration = true;
 	  enableFishIntegration = true;
+	  settings = {
+		  inline_height = 0; # https://github.com/atuinsh/atuin/issues/2207
+		  style = "full";
+	  };
   };
 
   programs.firefox = {
