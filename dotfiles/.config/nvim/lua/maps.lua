@@ -1,4 +1,5 @@
 local func = require("functions")
+local grep_diff_me = require("grep_diff_me")
 local lsp_helpers = require("lsp_helpers")
 
 vim.g.mapleader = " "
@@ -76,6 +77,7 @@ vim.keymap.set('n', "cr", vim.lsp.buf.rename)
 vim.keymap.set('n', "<leader>hp", require 'gitsigns'.preview_hunk)
 
 
+-- Telescopes
 local builtin = require("telescope.builtin")
 --  resume previous picker
 vim.keymap.set('n', "\\\\", builtin.resume)
@@ -87,6 +89,8 @@ vim.keymap.set('n', "<leader>r", builtin.live_grep)
 vim.keymap.set('n', "<leader>b", builtin.buffers)
 --  list symbols in the current workspace
 vim.keymap.set('n', "<leader>s", builtin.lsp_workspace_symbols)
+--  live grep through changes made by you
+vim.keymap.set('n', "<leader>g", grep_diff_me.scope)
 
 -- list all lsp:
 -- errors, warning and errors, everything

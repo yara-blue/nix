@@ -155,7 +155,7 @@ function shorten_path(path, max_len)
 end
 
 -- Search for string added in last "..n.." changes"
-function M.change_diff_scope()
+function M.scope()
 	local diff = jj_diff()
 	local conf = require('telescope.config').values;
 
@@ -181,7 +181,7 @@ function M.change_diff_scope()
 	}):find()
 end
 
-M.change_diff_scope()
+return M
 -- print(vim.inspect(jj_diff()))
 -- print(vim.inspect(jj_changes_for_last_n(2)))
 -- print(vim.inspect(jj_commits_for_author()))
