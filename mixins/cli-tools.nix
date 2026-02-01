@@ -15,6 +15,7 @@
 		fd
 		hyperfine
 		tokei
+		watchexec
 
 		pass
 		gnupg
