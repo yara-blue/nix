@@ -60,7 +60,6 @@
 		comma
 	];
 
-    
     # Yubikey
 	services.pcscd.enable = true;
 	# Yubikey and also software defined radio

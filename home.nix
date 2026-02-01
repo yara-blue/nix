@@ -6,6 +6,7 @@
 
   home.packages = [
   	pkgs.gammastep
+	pkgs.atuin
   ];
 
 # TODO not working...
@@ -25,7 +26,6 @@
   	./git.nix
 	./nfs.nix
 	./nvim.nix
-	# ./sway.nix # decided to do this mutably
   ];
 
   home.pointerCursor = {
@@ -34,6 +34,12 @@
 	  name = "WhiteSur-cursors";
 	  package = pkgs.whitesur-cursors;
 	  size = 24;
+  };
+
+  programs.atuin = {
+	  enable = true;
+	  enableBashIntegration = true;
+	  enableFishIntegration = true;
   };
 
   programs.firefox = {
