@@ -30,7 +30,15 @@
 	# 	"/share/xdg-desktop-portal"
 	# ];
 
-  services.break-enforcer.enable = true;
+  services.break-enforcer = {
+		enable = true;
+		tcp-api = true;
+		work-duration = "25m";
+		break-duration = "5m";
+		break-start-notify = ["audio"];
+		break-end-notify = ["audio"];
+		work-reset-notify = [];
+  };
   services.greetd = {
     enable = true;
     settings = rec {

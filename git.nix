@@ -33,6 +33,7 @@
 		};
 	 fish = {
 	   enable = true;
+	   shellInit = "fish_vi_key_bindings";
 		plugins = with pkgs.fishPlugins;
 		let mkPlugin = p: { inherit (p) src; name = "${p.pname}"; }; in
 		  (map mkPlugin [

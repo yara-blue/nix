@@ -17,6 +17,7 @@
 		home-manager.url = "github:nix-community/home-manager";
 		home-manager.inputs.nixpkgs.follows = "nixpkgs";
 		break-enforcer.url = "github:evavh/break-enforcer";
+		break-enforcer.inputs.nixpkgs.follows = "nixpkgs";
 		home-automation.url = "github:yara-blue/HomeAutomation";
 		tracy.url = "github:tukanoidd/tracy.nix";
 		firefox-addons = {
@@ -25,7 +26,7 @@
 		};
 		zed.url = "github:zed-industries/zed";
 		zed.inputs.nixpkgs.follows = "nixpkgs";
-		# break-enforcer.url = "path:/home/yara/bf/break-enforcer";
+		# break-enforcer.url = "path:/home/yara/Projects/break-enforcer";
 
 	};
 
@@ -43,16 +44,12 @@
 		  home-automation.overlays.default
 		];
 
-		machine = system: hostname: let
-			system_module = ./hosts/${hostname}/main.nix;
-			special = system: {
-			  inherit myOverlays inputs self;
-			};
-		in (lib.nixosSystem {
+		machine = system: hostname: 
+		lib.nixosSystem {
 			specialArgs = { inherit myOverlays inputs hostname; };
 			system = system;
 			modules = [
-				system_module
+				./hosts/${hostname}/main.nix
 				./mixins/common.nix
 				ragenix.nixosModules.default
 				agenix-rekey.nixosModules.default
@@ -67,7 +64,7 @@
 				# make the nixos break-enforcer module available
 				break-enforcer.nixosModules.break-enforcer
 			];
-		});
+		};
 	in {
 
 		 nixosConfigurations = {
