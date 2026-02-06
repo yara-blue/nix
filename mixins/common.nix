@@ -82,24 +82,23 @@
 
   # secrets management
   age = {
-	  identityPaths = [ "/home/yara/.ssh/yara.pub" ]; # TODO relative?
-  	  # secrets.mc-server-address.rekeyFile =
-	  # ../../secrets/mc-server-address.age; # TODO make work
+	  identityPaths = [ "/home/yara/.ssh/yara_agenix_ed25519" ]; # TODO relative?
+  	  secrets.mc-server-address.rekeyFile = ./. + "/../secrets/mc-server-address.age";
+	  # /home/yara/nix/secrets/mc-server-address.age; # TODO make work
+	  # ./mc-server-address.age; # TODO make work
   };
 
   age.rekey = {
     # Obtain this using `ssh-keyscan` or by looking it up in your ~/.ssh/known_hosts
-	# Right now this is just the main system. Need to move/override this in 
-	# host specific files. Maybe pass it in?
-	hostPubkey = "ssh-rsa
-	AAAAB3NzaC1yc2EAAAADAQABAAACAQDQ2iTmgsUTJhhs8b8FCSYCiA8IEnIl7rUvOjQN9tJD0S8j4zFCl4t6osrIEP2RWOqk5e5eqK1CCMx7WBhHBQEGclxuTr3aATm145y3/1p4CSOhdciW7SQNgvVnkrkTW6OoZhfNiJZDPddolEb0TKC5bAijvJeWifTu0755os+N3jEAqdEzIcZKne6QtaX3yrkxmIVKny04wTbgpb9do3RHNoCYkFqvtwlc0Grc9pTK4M1ZAOT0ZslhuXJLJOaFQOES6d9vLdGd3wxqCNBPfFMZdXJCuzh6GEILV7RoLOda6D//SEK3eudgHdG5JcwaEhtbsHQUpl1VTtlT7CxBsj3Nv7s/rWv9Zb/ZtSuJsEz1FlEZf6bl+v4VlcPu80Q7VCHby0WiMv582lIX7VBIASMfObrEH07v+yeVz7iid7BBOPD62ijEd9txWB5cBHoXuswDGZbTifQSi75hxz5metwSGGIKj3zHz0M2JHynEsOqcuBDWXMevySYMi5MTMvLG1euRjDABO53Y9o6B5myEFokYsNShromLnxD49AZrDeZfXEfKI2uy16UKhblkldHdpkfVAvITyDpivrRzGhN0xYMjJ8sVz0XT/+TOqgMIzfUCmXewEo2VX2Z/lNkmeaM5HrTpd4PcyK5sB8oS1VDHNrT0FjviRB7X0wp4sACYBSj0w==";
+	# Key for the user that needs to decrypt?
+	hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIzIRtes7reuVAAUZnRj5O3ti+aSURofgbS4DbTkmVvU yara@abydos";
 
 	masterIdentities = [ 
 		/home/yara/nix/age-yubikey-identity-1b1c41c4.pub # TODO path
 		/home/yara/nix/age-yubikey-identity-3035da2f.pub # TODO path
 	];
 	storageMode = "local";
-	localStorageDir = ./. + "/secrets/rekeyed/${config.networking.hostName}";
+	localStorageDir = ./. + "/../secrets/rekeyed/${config.networking.hostName}";
   };
 
   # users.users.root.hashedPasswordFile = config.age.secrets.root-pw-hash.path;
