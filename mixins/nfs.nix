@@ -63,9 +63,12 @@ in
     kstart
   ];
 
-  # TODO cache and store (agenix?) and move into place on rebuild
-  # sudo kadmin -p yara/admin -q "addprinc -randkey nfs/<host>"
-  # sudo kadmin -p yara/admin -q "ktadd nfs/<host>"
-  # sudo kadmin -p yara/admin -q "addprinc <local username>"
-  # sudo kadmin -p yara/admin -q "ktadd <local username>"
+  # keytab.age for user yara, see https://yara.blue/posts/secure_nfsv4/
+  # automount section on how to create it
+  age.secrets.keytab = {
+	  owner = "yara";
+	  group = "users";
+	  mode = "400";
+	  rekeyFile = ./. + "/../secrets/keytab.age";
+  };
 }

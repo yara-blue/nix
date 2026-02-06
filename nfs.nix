@@ -1,5 +1,14 @@
 { pkgs, hostname, ... }:
 
+# kerberos tooling is super annoying so we can not really automate this further
+# easily. This just gets you the parts so you do not need to do kinit every
+# time.
+#
+# You'll still need to do some of: https://yara.blue/posts/secure_nfsv4/
+# See mixins/nfs.nix for more kerberos setup, like id mapping and the actual
+# mounting
+
+
 let
 	kerberos_principle = {
 		"work" = "yara-work";
@@ -9,13 +18,12 @@ in {
 	systemd.user.enable = true;
 
 	systemd.user.services.kerberos_mount = {
-		# enable = true;
 		Unit = {
-			description = "Initializes, caches and renews Kerberos tickets";
-			after = [ "default.target" ];
+			Description = "Initializes, caches and renews Kerberos tickets";
+			After = [ "default.target" ];
 		};
 		Install = {
-			wantedBy = [ "default.target" ];
+			WantedBy = [ "default.target" ];
 		};
 
 		Service = {
@@ -25,7 +33,7 @@ in {
 				# run in daemon mode, recheck ticket every  30 minutes \
 				-K 30 \
 				# authenticate using keytab rather then asking for a password \
-				-f %h/.local/keytab \
+				-f /run/agenix/keytab \
 				# store this file as ticket cache \
 				-k /tmp/krb5cc_%U \
 				# principle to get tickets for \
