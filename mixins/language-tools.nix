@@ -2,6 +2,7 @@
 	environment.systemPackages = with pkgs; [
 		# lsps
 		nixd # nix language server
+		nixfmt # used by nixd for formatting
 		rust-analyzer
 		typos-lsp
 		tinymist # typst language service
