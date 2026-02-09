@@ -12,7 +12,6 @@
   users.users.yara.isNormalUser = true;
   users.defaultUserShell = pkgs.fish;
 
-
   programs = {
     fish.enable = true;
   };
@@ -34,8 +33,8 @@
     "m" = "neomutt";
 
     "tt" = "trash put";
-	"ctrlc" = "wl-copy";
-	"ctrlv" = "wl-paste";
+    "ctrlc" = "wl-copy";
+    "ctrlv" = "wl-paste";
   };
 
   fonts.packages = with pkgs; [
@@ -48,7 +47,7 @@
     mplus-outline-fonts.githubRelease
     dina-font
     proggyfonts
-	libertine
+    libertine
   ];
 
   # enable usb automount
@@ -62,8 +61,8 @@
   };
 
   networking.extraHosts = ''
-	192.168.1.43 sgc
-	192.168.1.15 asgard
+    	192.168.1.43 sgc
+    	192.168.1.15 asgard
   '';
 
   nixpkgs = {
@@ -82,20 +81,20 @@
 
   # secrets management
   age = {
-	  identityPaths = [ "/home/yara/.ssh/yara_agenix_ed25519" ]; # TODO relative?
+    identityPaths = [ "/home/yara/.ssh/yara_agenix_ed25519" ]; # TODO relative?
   };
 
   age.rekey = {
     # Obtain this using `ssh-keyscan` or by looking it up in your ~/.ssh/known_hosts
-	# Key for the user that needs to decrypt?
-	hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIzIRtes7reuVAAUZnRj5O3ti+aSURofgbS4DbTkmVvU yara@abydos";
+    # Key for the user that needs to decrypt?
+    hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIzIRtes7reuVAAUZnRj5O3ti+aSURofgbS4DbTkmVvU yara@abydos";
 
-	masterIdentities = [ 
-		/home/yara/nix/age-yubikey-identity-1b1c41c4.pub # TODO path
-		/home/yara/nix/age-yubikey-identity-3035da2f.pub # TODO path
-	];
-	storageMode = "local";
-	localStorageDir = ./. + "/../secrets/rekeyed/${config.networking.hostName}";
+    masterIdentities = [
+      /home/yara/nix/age-yubikey-identity-1b1c41c4.pub # TODO path
+      /home/yara/nix/age-yubikey-identity-3035da2f.pub # TODO path
+    ];
+    storageMode = "local";
+    localStorageDir = ./. + "/../secrets/rekeyed/${config.networking.hostName}";
   };
 
   # users.users.root.hashedPasswordFile = config.age.secrets.root-pw-hash.path;

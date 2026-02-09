@@ -1,16 +1,23 @@
-{ pkgs, config, self, inputs, hostname, ...}@args : {
-	imports = [
-		./hardware.nix
-		./../../mixins/desktop-env.nix
-		./../../mixins/build-tools.nix
-		./../../mixins/cli-tools.nix
-		./../../mixins/nfs.nix
-		./../../mixins/vpn.nix
-		./../../mixins/language-tools.nix
-		./../../mixins/graphical/productivity.nix
-		./../../mixins/graphical/common.nix
-	];
-
+{
+  pkgs,
+  config,
+  self,
+  inputs,
+  hostname,
+  ...
+}@args:
+{
+  imports = [
+    ./hardware.nix
+    ./../../mixins/desktop-env.nix
+    ./../../mixins/build-tools.nix
+    ./../../mixins/cli-tools.nix
+    ./../../mixins/nfs.nix
+    ./../../mixins/vpn.nix
+    ./../../mixins/language-tools.nix
+    ./../../mixins/graphical/productivity.nix
+    ./../../mixins/graphical/common.nix
+  ];
 
   networking.hostName = hostname;
   networking.networkmanager.enable = true;
@@ -29,8 +36,8 @@
     LC_TIME = "nl_NL.UTF-8";
   };
 
-	# Enable the X11 windowing system.
-	services.xserver.enable = true;
+  # Enable the X11 windowing system.
+  services.xserver.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -52,22 +59,26 @@
   };
 
   services.openssh = {
-	  enable = true;
+    enable = true;
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.yara = {
     isNormalUser = true;
     description = "Yara";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
   };
   users.users.kate = {
     isNormalUser = true;
     description = "Kate";
-	openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEHWfBIxvY4c0Rdava/cAEa3qGUOxMSt4Cu0Ap7RtSK7"];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEHWfBIxvY4c0Rdava/cAEa3qGUOxMSt4Cu0Ap7RtSK7"
+    ];
     extraGroups = [ "networkmanager" ];
   };
-
 
   # Install firefox.
   programs.firefox.enable = true;
@@ -75,7 +86,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-	slack
+    slack
   ];
 
   #services.getty = {
@@ -117,4 +128,3 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
 }
-

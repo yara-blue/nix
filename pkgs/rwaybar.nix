@@ -29,7 +29,8 @@ rustPlatform.buildRustPackage rec {
   buildInputs = [
     libpulseaudio
     libxkbcommon
-  ] ++ lib.optionals stdenv.isLinux [
+  ]
+  ++ lib.optionals stdenv.isLinux [
     wayland
   ];
 

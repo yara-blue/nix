@@ -1,83 +1,95 @@
-{ pkgs, lib, inputs, config, myOverlays, ... }: {
-	environment.systemPackages = with pkgs; [
-		zoxide
-		direnv
-		git
-		eza
-		bat
-		usbutils
-		htop
-		btop
-		dua 			# disk usage
-		ripgrep
-		ast-grep
-		neomutt
-		fd
-		hyperfine
-		tokei
-		watchexec
+{
+  pkgs,
+  lib,
+  inputs,
+  config,
+  myOverlays,
+  ...
+}:
+{
+  environment.systemPackages = with pkgs; [
+    zoxide
+    direnv
+    git
+    eza
+    bat
+    usbutils
+    htop
+    btop
+    dua # disk usage
+    ripgrep
+    ast-grep
+    neomutt
+    fd
+    hyperfine
+    tokei
+    watchexec
 
-		pass
-		gnupg
-		pinentry-tty
-		yubikey-personalization
-		age-plugin-yubikey
-		agenix-rekey
+    pass
+    gnupg
+    pinentry-tty
+    yubikey-personalization
+    age-plugin-yubikey
+    agenix-rekey
 
-		strace
-		nmap
-		samply
+    strace
+    nmap
+    samply
 
-		neovim
-		websocat # used for typst preview from neovim
-		neomutt
+    neovim
+    websocat # used for typst preview from neovim
+    neomutt
 
-		killall
-		fish
-		zsh
-		bash
+    killall
+    fish
+    zsh
+    bash
 
-		bind # contains nslookup, host, dig etc
-		curl
-		wget
-		efibootmgr
+    bind # contains nslookup, host, dig etc
+    curl
+    wget
+    efibootmgr
 
-		rmpc
-		mpc
+    rmpc
+    mpc
 
-		numbat
+    numbat
 
-		# home automation
-		text-widget
-		ui
+    # home automation
+    text-widget
+    ui
 
-		mc-player-count
-		mc-player-count-wrapper
+    mc-player-count
+    mc-player-count-wrapper
 
-		trashy
+    trashy
 
-		git-undeadname
+    git-undeadname
 
-		nix-output-monitor
-		comma
-	];
+    nix-output-monitor
+    comma
+  ];
 
-    # Yubikey
-	services.pcscd.enable = true;
-	# Yubikey and also software defined radio
-    services.udev.packages = [ pkgs.yubikey-personalization pkgs.rtl-sdr pkgs.gqrx ];
+  # Yubikey
+  services.pcscd.enable = true;
+  # Yubikey and also software defined radio
+  services.udev.packages = [
+    pkgs.yubikey-personalization
+    pkgs.rtl-sdr
+    pkgs.gqrx
+  ];
 
-	programs.gnupg.agent = {
-		enable = true;
-		enableSSHSupport = true;
-		# pinentryPackage = pkgs.pinentry-tty;
-	};
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+    # pinentryPackage = pkgs.pinentry-tty;
+  };
 
-	# use gpg as ssh agent
-	programs.ssh.startAgent = false;
-	environment.shellInit = ''
-	    gpg-connect-agent /bye
-    	export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-	'';
+  # use gpg as ssh agent
+  programs.ssh.startAgent = false;
+  environment.shellInit = ''
+    	    gpg-connect-agent /bye
+        	export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+    	'';
 
 }
