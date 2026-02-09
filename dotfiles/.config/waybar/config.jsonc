@@ -4,7 +4,7 @@
     // "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 25, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
-    "spacing": 4, // Gaps between modules (4px)
+    "spacing": 13, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
         "sway/workspaces",
@@ -17,6 +17,7 @@
         "clock"
     ],
     "modules-right": [
+		"custom/minecraft-widget",
 		"custom/ha-text-widget",
         "pulseaudio"
     ],
@@ -46,11 +47,15 @@
         "format": "{volume}%"
     },
 	"custom/break-enforcer": {
-		"exec": "/run/current-system/sw/bin/break-enforcer status --update-period 1s",
+		"exec": "break-enforcer status --update-period 1s",
 		"format": "{}"
 	},
 	"custom/ha-text-widget": {
-		"exec": "/run/current-system/sw/bin/ha-text-widget --server 192.168.1.43:1235 temp hum co2 pm25",
+		"exec": "ha-text-widget --server 192.168.1.43:1235 temp hum co2 pm25",
+		"format": "{}"
+	},
+	"custom/minecraft-widget": {
+		"exec": "mc-player-count-wrapped",
 		"format": "{}"
 	}
 }

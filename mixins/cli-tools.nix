@@ -52,6 +52,7 @@
 		ui
 
 		mc-player-count
+		mc-player-count-wrapper
 
 		trashy
 

@@ -5,16 +5,16 @@
 
 rustPlatform.buildRustPackage {
   pname = "mc-player-count";
-  version = "0.1.0";
+  version = "0.2.0"; # does not need to match the Cargo version field
 
   src = fetchFromGitHub {
     owner = "yara-blue";
     repo = "mc-player-count";
-    rev = "f11ed61554743851a593f15e6b476974a90d82d4";
-    hash = "sha256-HqldwhQwbf+7/fZv96Q+MSeFVa6DCEol02C0ZDrGAD8=";
+    rev = "68910edf55f773adbe142682803d7a85f1a54cce";
+    hash = "sha256-rmdlfmVSLii2O6UQKSivmed5AgrIBClray5wcmNsCCU=";
   };
 
-  cargoHash = "sha256-7faVh5j029L3KNRVii+oGwFt4lUb3gjnbcqdv62ekHE=";
+  cargoHash = "sha256-XIRjEfCzAjbKcjGRc57xy1OS3WrhaZP+FnvI8udQuRk=";
 
   meta = {
     description = "Small bar app which displays the number of players on a

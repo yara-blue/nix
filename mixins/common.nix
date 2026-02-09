@@ -83,9 +83,6 @@
   # secrets management
   age = {
 	  identityPaths = [ "/home/yara/.ssh/yara_agenix_ed25519" ]; # TODO relative?
-  	  secrets.mc-server-address.rekeyFile = ./. + "/../secrets/mc-server-address.age";
-	  # /home/yara/nix/secrets/mc-server-address.age; # TODO make work
-	  # ./mc-server-address.age; # TODO make work
   };
 
   age.rekey = {

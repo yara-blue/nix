@@ -64,6 +64,14 @@
 	'';
   };
 
+  # for minecraft server plugin
+  age.secrets.mc-server-address = {
+	  owner = "yara";
+	  group = "users";
+	  mode = "400";
+	  rekeyFile = ./. + "/../secrets/mc-server-address.age";
+  };
+
   # xdg = {
   # portal = {
   #   enable = true;
