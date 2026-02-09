@@ -37,6 +37,7 @@
     samply
 
     neovim
+	helix
     websocat # used for typst preview from neovim
     neomutt
 
@@ -58,9 +59,7 @@
     # home automation
     text-widget
     ui
-
     mc-player-count
-    mc-player-count-wrapper
 
     trashy
 
