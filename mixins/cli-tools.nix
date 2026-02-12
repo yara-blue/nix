@@ -45,6 +45,8 @@
     fish
     zsh
     bash
+	starship
+	starship-jj
 
     bind # contains nslookup, host, dig etc
     curl
@@ -83,6 +85,10 @@
     enableSSHSupport = true;
     # pinentryPackage = pkgs.pinentry-tty;
   };
+
+  imports = [
+  	./prompt.nix
+  ];
 
   # use gpg as ssh agent
   programs.ssh.startAgent = false;

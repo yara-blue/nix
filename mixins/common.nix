@@ -48,6 +48,11 @@
     dina-font
     proggyfonts
     libertine
+	nerd-fonts.open-dyslexic
+	nerd-fonts.im-writing
+	nerd-fonts.fira-code
+	nerd-fonts.caskaydia-mono
+	nerd-fonts.fantasque-sans-mono
   ];
 
   # enable usb automount

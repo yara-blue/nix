@@ -83,7 +83,7 @@
     // Disable ligatures:
     "calt": false
   },
-  "buffer_font_family": "CaskaydiaCovePL Nerd Font",
+  "buffer_font_family": "OpenDyslexic Nerd Font",
   "buffer_line_height": "standard",
   "buffer_font_weight": 100.0,
   "buffer_font_size": 23.0,
