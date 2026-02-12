@@ -3,6 +3,7 @@
   config,
   pkgs,
   lib,
+  stylix,
   ...
 }:
 {
@@ -31,7 +32,19 @@
     ./git.nix
     ./nfs.nix
     ./nvim.nix
+    ./eza_theme.nix
   ];
+
+  stylix.targets = {
+    neovim.enable = false;
+    alacritty.fonts.override = {
+      size = 20;
+    };
+    firefox.profileNames = [ "default" ];
+    waybar.opacity.override = {
+      desktop = 0.5;
+    };
+  };
 
   programs.waybar =
     let
@@ -156,6 +169,10 @@
 
       ];
     };
+  };
+
+  programs.alacritty = {
+    enable = true;
   };
 
   xdg.mimeApps = {

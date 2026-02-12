@@ -26,6 +26,8 @@
     };
     zed.url = "github:zed-industries/zed";
     zed.inputs.nixpkgs.follows = "nixpkgs";
+    stylix.url = "github:nix-community/stylix";
+    stylix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -39,6 +41,7 @@
       self,
       break-enforcer,
       home-automation,
+      stylix,
       ...
     }@inputs:
     let
@@ -61,6 +64,7 @@
           modules = [
             ./hosts/${hostname}/main.nix
             ./mixins/common.nix
+			stylix.nixosModules.stylix
             ragenix.nixosModules.default
             agenix-rekey.nixosModules.default
             home-manager.nixosModules.home-manager

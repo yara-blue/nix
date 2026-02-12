@@ -82,6 +82,43 @@
     rekeyFile = ./. + "/../secrets/mc-server-address.age";
   };
 
+  stylix = {
+    enable = true;
+    # anything from: https://tinted-theming.github.io/tinted-gallery/
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa.yaml";
+	# base16Scheme = "${pkgs.base16-schemes}/share/themes/selenized-light.yaml";
+	# base16Scheme = "${pkgs.base16-schemes}/share/themes/solarized-light.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine-moon.yaml";
+
+	targets.plymouth.enable = false;
+
+    fonts = {
+      sizes = {
+        terminal = 20;
+        applications = 12;
+		desktop = 12;
+      };
+      serif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Serif";
+      };
+      sansSerif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Sans";
+      };
+      monospace = {
+        package = pkgs.dejavu_fonts;
+        name = "FantasqueSansM Nerd Font Mono";
+      };
+      emoji = {
+        package = pkgs.noto-fonts-color-emoji;
+        name = "Noto Color Emoji";
+      };
+    };
+  };
+
   # xdg = {
   # portal = {
   #   enable = true;

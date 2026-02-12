@@ -10,8 +10,6 @@
       enableFishIntegration = true;
     };
 
-    alacritty.theme = "solarized_light";
-
     git = {
       enable = true;
       settings = {
