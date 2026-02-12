@@ -31,6 +31,8 @@
     # other
     "v" = "nvim";
     "m" = "neomutt";
+	"la" = "exa -la";
+	"ls" = "exa";
 
     "tt" = "trash put";
     "ctrlc" = "wl-copy";

@@ -28,6 +28,7 @@
     zed.inputs.nixpkgs.follows = "nixpkgs";
     stylix.url = "github:nix-community/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
+    nixcord.url = "github:FlameFlag/nixcord";
   };
 
   outputs =
