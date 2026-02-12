@@ -52,14 +52,21 @@ local lualine_inactive_sections = {
 }
 
 function M:lualine(theme)
+	if theme ~= nil then
 	require("lualine").setup({
 		options = {
 			theme = theme,
 		},
 		sections = lualine_sections,
 		inactive_sections = lualine_inactive_sections,
-
 	})
+	else 
+		require("lualine").setup({
+			sections = lualine_sections,
+			inactive_sections = lualine_inactive_sections,
+
+		})
+	end
 end
 
 require("fidget").setup{

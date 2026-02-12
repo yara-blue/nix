@@ -38,6 +38,7 @@
       nvim-web-devicons
       vim-startify
       vim-jjdescription
+	  mini-base16
 
       # Tools
       nvim-tree-lua

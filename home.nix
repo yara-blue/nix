@@ -33,6 +33,7 @@
     ./nfs.nix
     ./nvim.nix
     ./eza_theme.nix
+	./vim_theme.nix
   ];
 
   stylix.targets = {
