@@ -1,6 +1,17 @@
 module_separator = " "
 reset_color = true
 
+palette = 'pastel_yara'
+
+[palettes.pastel_yara]
+color_white = '#ffffff'
+color_a = '#9A348E'
+color_b = '#DA627D'
+color_c = '#FCA17D'
+color_d = '#86BBD8'
+color_e = '#06969A'
+color_f = '#33658A'
+
 [bookmarks]
 search_depth = 100
 exclude = []
@@ -10,11 +21,15 @@ exclude = []
 # symbol = "󱗆 "
 # color = "Blue"
 
+# [](fg:#DA627D bg:#FCA17D)\
+# ${custom.jj}\
+# [](fg:#FCA17D bg:#86BBD8)\
 [[module]]
 type = "Bookmarks"
 separator = " "
-color = "White"
-bg_color = "TrueColor { r: 252, g: 161, b:125 }"
+# color = "white"
+bg_color = "#86BBD8" # color d
+color = "#1F3E5A"
 behind_symbol = "+"
 surround_with_quotes = false
 ignore_empty_commits = "None"
@@ -38,45 +53,48 @@ separator = " "
 disabled = false
 text = "(CONFLICT)"
 color = "Red"
+bg_color = "#FCA17D"
 
 [module.divergent]
 disabled = false
 text = "(DIVERGENT)"
 color = "Cyan"
+bg_color = "#FCA17D"
 
 [module.empty]
 disabled = false
 text = "(EMPTY)"
-color = "Yellow"
+color = "#1F3E5A"
+bg_color = "#FCA17D"
 
 [module.immutable]
 disabled = false
 text = "(IMMUTABLE)"
-color = "Yellow"
+color = "#1F3E5A"
+bg_color = "#FCA17D"
 
 [module.hidden]
 disabled = false
 text = "(HIDDEN)"
-color = "Yellow"
+color = "#1F3E5A"
+bg_color = "#FCA17D"
 
 [[module]]
 type = "Metrics"
-template = "[{changed} {added} {removed}]"
-hide_if_empty = false
-color = "Magenta"
-
-[module.changed_files]
-prefix = ""
-suffix = ""
-color = "Cyan"
+template = "[{added}{removed}]"
+hide_if_empty = true
+color = "#1F3E5A"
+bg_color = "#86BBD8" # color d
 
 [module.added_lines]
 prefix = "+"
 suffix = ""
-color = "Green"
+color = "#2F7D5C"
+bg_color = "#86BBD8" # color d
 
 [module.removed_lines]
 prefix = "-"
 suffix = ""
-color = "Red"
+color = "#A23B3B"
+bg_color = "#86BBD8" # color d
 

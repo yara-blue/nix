@@ -1,18 +1,18 @@
 {
   lib,
-  fetchCrate,
   rustPlatform,
 }:
-rustPlatform.buildRustPackage rec {
+rustPlatform.buildRustPackage {
   pname = "starship-jj";
   version = "0.7.0";
 
-  src = fetchCrate {
-    inherit pname version;
-    hash = "sha256-oisz3V3UDHvmvbA7+t5j7waN9NykMUWGOpEB5EkmYew=";
+  src = fetchGit {
+    url = "https://gitlab.com/lanastara_foss/starship-jj";
+    ref = "feature/extended_color_parsing";
+    rev = "e2fe1544fe92198427a1fcc1dfad9dbccf93ce79";
   };
 
-  cargoHash = "sha256-NNeovW27YSK/fO2DjAsJqBvebd43usCw7ni47cgTth8=";
+  cargoHash = "sha256-PTgZebzYvRfDgu7/mNTxI864fwIklRFRhLqQCqBlGo0=";
 
   meta = with lib; {
     description = "Starship plugin for jj";
