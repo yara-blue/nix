@@ -29,6 +29,7 @@
   };
 
   imports = [
+    inputs.nixcord.homeModules.nixcord
     ./git.nix
     ./nfs.nix
     ./nvim.nix
@@ -44,6 +45,22 @@
     firefox.profileNames = [ "default" ];
     waybar.opacity.override = {
       desktop = 0.5;
+    };
+  };
+
+  programs.nixcord = {
+    enable = true;
+    vesktop.enable = true;
+
+    config = {
+      plugins = {
+        ircColors.enable = true;
+        showHiddenChannels.enable = true;
+        spotifyCrack.enable = true;
+        unindent.enable = true;
+        youtubeAdblock.enable = true;
+        fakeNitro.enable = true;
+      };
     };
   };
 

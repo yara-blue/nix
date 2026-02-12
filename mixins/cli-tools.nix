@@ -20,6 +20,7 @@
     ripgrep
     ast-grep
     neomutt
+	abook
     fd
     hyperfine
     tokei

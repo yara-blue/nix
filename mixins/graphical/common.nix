@@ -8,10 +8,15 @@
 }:
 {
   environment.systemPackages = with pkgs; [
-    discord
+	vencord
     fluffychat
     firefox
     pavucontrol
+
+	# picture editing
+	gimp
+	qimgv
+	darktable
 
     alacritty
     alacritty-theme

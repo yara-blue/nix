@@ -11,6 +11,7 @@
     kodi
     freetube
     telegram-desktop
+	signal-desktop
 
     # gaming
     steam
