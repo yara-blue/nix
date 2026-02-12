@@ -3,6 +3,8 @@ reset_color = true
 
 palette = 'pastel_yara'
 
+# Palette is not supported unfortunately
+# Here as reference only 
 [palettes.pastel_yara]
 color_white = '#ffffff'
 color_a = '#9A348E'
@@ -16,35 +18,15 @@ color_f = '#33658A'
 search_depth = 100
 exclude = []
 
-# [[module]]
-# type = "Symbol"
-# symbol = "󱗆 "
-# color = "Blue"
-
-# [](fg:#DA627D bg:#FCA17D)\
-# ${custom.jj}\
-# [](fg:#FCA17D bg:#86BBD8)\
 [[module]]
 type = "Bookmarks"
 separator = " "
-# color = "white"
 bg_color = "#86BBD8" # color d
 color = "#1F3E5A"
 behind_symbol = "+"
 surround_with_quotes = false
 ignore_empty_commits = "None"
 
-# [[module]]
-# type = "Commit"
-# previous_message_symbol = "⇣"
-# max_length = 24
-# show_previous_if_empty = false
-# empty_text = "(no description set)"
-# surround_with_quotes = true
-#
-# [module.non_unique]
-# color = "Black"
-#
 [[module]]
 type = "State"
 separator = " "
@@ -53,31 +35,31 @@ separator = " "
 disabled = false
 text = "(CONFLICT)"
 color = "Red"
-bg_color = "#FCA17D"
+bg_color = "#86BBD8" # color d
 
 [module.divergent]
 disabled = false
 text = "(DIVERGENT)"
 color = "Cyan"
-bg_color = "#FCA17D"
+bg_color = "#86BBD8" # color d
 
 [module.empty]
 disabled = false
 text = "(EMPTY)"
 color = "#1F3E5A"
-bg_color = "#FCA17D"
+bg_color = "#86BBD8" # color d
 
 [module.immutable]
 disabled = false
 text = "(IMMUTABLE)"
 color = "#1F3E5A"
-bg_color = "#FCA17D"
+bg_color = "#86BBD8" # color d
 
 [module.hidden]
 disabled = false
 text = "(HIDDEN)"
 color = "#1F3E5A"
-bg_color = "#FCA17D"
+bg_color = "#86BBD8" # color d
 
 [[module]]
 type = "Metrics"
