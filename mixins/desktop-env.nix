@@ -29,6 +29,8 @@
     alsa-utils
 
     tuigreet
+	plymouth
+	plymouth-blahaj-theme
   ];
 
   # environment.pathsToLink = [

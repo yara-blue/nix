@@ -17,8 +17,26 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 30;
-  boot.loader.timeout = 5; # seconds
+  boot.loader.timeout = 10; # seconds (screen can be slow to turn on)
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.plymouth = { #FIXME
+    enable = true;
+    theme = "blahaj";
+    themePackages = with pkgs; [
+      plymouth-blahaj-theme
+    ];
+  };
+
+  boot = {
+    # Enable "Silent boot"
+    consoleLogLevel = 3;
+    initrd.verbose = false;
+    kernelParams = [
+      "quiet"
+      "udev.log_level=3"
+      "systemd.show_status=auto"
+    ];
+  };
 
   boot.initrd.availableKernelModules = [
     "nvme"
