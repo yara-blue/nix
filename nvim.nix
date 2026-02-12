@@ -37,6 +37,7 @@
       lualine-lsp-progress
       nvim-web-devicons
       vim-startify
+      vim-jjdescription
 
       # Tools
       nvim-tree-lua
@@ -49,6 +50,7 @@
       lsp_lines-nvim
       fidget-nvim
       nvim-lint
+	  crates-nvim
 
       # Text tools
       vim-easy-align
