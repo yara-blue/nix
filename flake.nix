@@ -26,8 +26,6 @@
     };
     zed.url = "github:zed-industries/zed";
     zed.inputs.nixpkgs.follows = "nixpkgs";
-    # break-enforcer.url = "path:/home/yara/Projects/break-enforcer";
-
   };
 
   outputs =

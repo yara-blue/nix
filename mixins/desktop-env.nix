@@ -41,7 +41,10 @@
     tcp-api = true;
     work-duration = "25m";
     break-duration = "5m";
-    break-start-notify = [ "audio" ];
+    break-start-notify = [ 
+		"audio" 
+		"command(${pkgs.procps}/bin/pkill --ignore-ancestors --full java.*minecraft)"
+	];
     break-end-notify = [ "audio" ];
     work-reset-notify = [ ];
   };

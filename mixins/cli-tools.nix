@@ -42,6 +42,7 @@
     neomutt
 
     killall
+	procps # pkill etc
     fish
     zsh
     bash
