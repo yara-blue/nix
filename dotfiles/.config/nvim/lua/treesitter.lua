@@ -51,7 +51,7 @@ require("nvim-treesitter.configs").setup {
 
 require("treesitter-context").setup {
 	enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
-	max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+	max_lines = 10, -- How many lines the window should span. Values <= 0 mean no limit.
 	-- Minimum editor window height to enable context. Values <= 0 mean no limit.
 	min_window_height = 0,
 	line_numbers = true,

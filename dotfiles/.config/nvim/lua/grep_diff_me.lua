@@ -2,7 +2,9 @@
 
 local util = require("util")
 
-M = {}
+local M = {
+	file_ignore_patterns = {}
+}
 
 -- largest chunk of changes that a single author worked on
 function jj_commits_for_author_in_last_n_commits(n) 
@@ -86,8 +88,10 @@ end
 -- lines in the current file that where modified in the 
 -- last n commits
 --
+-- @ignored_file_pattern: list of paths that should be ignored (lua patterns)
+--
 -- returns a table of lines with keys: path, linenumber, line
-function jj_diff() 
+function jj_diff(file_ignore_patterns) 
 	local res = {}
 	local allowed_commits = jj_commits_for_author()
 	local revset = to_revset_string(allowed_commits)
@@ -105,8 +109,15 @@ function jj_diff()
 
 	for file in vim.gsplit(files, "\n") do
 		if string.len(file) == 0 then -- trailing \n
-			break
+			break -- at the end of input we are done
 		end
+
+		for _, pattern in ipairs(file_ignore_patterns) do 
+			if string.match(file, pattern) then
+				goto continue
+			end
+		end
+
 		local lines = vim.fn.system("git blame -l ".. file)
 		for line in vim.gsplit(lines, "\n") do
 			local commit_id = vim.split(line, " ")[1]
@@ -122,10 +133,10 @@ function jj_diff()
 					["lnum"] = tonumber(row), 
 					["content"] = unindented
 				}
-			end
-		end
-	end
-
+			end -- if
+		end --for line
+		::continue::
+	end -- for file
 	return res
 end
 
@@ -154,9 +165,21 @@ function shorten_path(path, max_len)
 	return res
 end
 
+-- call this after setting up telescope so it can inherit should
+function M.setup(file_ignore_patterns) 
+	for _, pattern in ipairs(file_ignore_patterns) do
+		M.file_ignore_patterns[#M.file_ignore_patterns] = pattern
+	end
+end
+
 -- Search for string added in last "..n.." changes"
 function M.scope()
-	local diff = jj_diff()
+	local from_telescope = require('telescope.config').values.file_ignore_patterns;
+	for _, pattern in ipairs(from_telescope) do
+		M.file_ignore_patterns[#M.file_ignore_patterns] = pattern
+	end
+
+	local diff = jj_diff(M.file_ignore_patterns)
 	local conf = require('telescope.config').values;
 
 	-- pretty good telescope custom picker guide
@@ -182,8 +205,3 @@ function M.scope()
 end
 
 return M
--- print(vim.inspect(jj_diff()))
--- print(vim.inspect(jj_changes_for_last_n(2)))
--- print(vim.inspect(jj_commits_for_author()))
--- print(shorten_path("/hello/long/path/file.rs", 10))
--- print(shorten_path("tests/ui/suggestions/suggest-private-field.rs", 10))

@@ -1,5 +1,6 @@
 local func = require("functions")
 local grep_diff_me = require("grep_diff_me")
+grep_diff_me.setup({"%.stderr", "%.stdout"}) -- FIXME why does this not work?
 local lsp_helpers = require("lsp_helpers")
 
 vim.g.mapleader = " "
