@@ -29,8 +29,9 @@
     alsa-utils
 
     tuigreet
-	plymouth
-	plymouth-blahaj-theme
+    switch-theme
+    plymouth
+    plymouth-blahaj-theme
   ];
 
   # environment.pathsToLink = [
@@ -92,13 +93,13 @@
 	# base16Scheme = "${pkgs.base16-schemes}/share/themes/solarized-light.yaml";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine-moon.yaml";
 
-	targets.plymouth.enable = false;
+    targets.plymouth.enable = false;
 
     fonts = {
       sizes = {
         terminal = 20;
         applications = 12;
-		desktop = 12;
+        desktop = 12;
       };
       serif = {
         package = pkgs.dejavu_fonts;
@@ -119,14 +120,14 @@
     };
   };
 
-  # xdg = {
-  # portal = {
-  #   enable = true;
-  #   extraPortals = with pkgs; [
-  #     xdg-desktop-portal-wlr
-  #     xdg-desktop-portal-gtk
-  #   ];
-  # };
-  # };
+  xdg = {
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-wlr
+        xdg-desktop-portal-gtk
+      ];
+    };
+  };
 
 }
