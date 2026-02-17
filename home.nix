@@ -34,18 +34,32 @@
     ./nfs.nix
     ./nvim.nix
     ./eza_theme.nix
-	./vim_theme.nix
+    ./vim_theme.nix
   ];
 
   stylix.targets = {
+    # native neovim themes better (highlight groups & more shades)
     neovim.enable = false;
     alacritty.fonts.override = {
-      size = 20;
+      size = 20; # I like it big
     };
     firefox.profileNames = [ "default" ];
     waybar.opacity.override = {
       desktop = 0.5;
     };
+    # todo fix theming for light themes
+    # https://github.com/nix-community/stylix/pull/365/changes
+    nixcord.enable = false;
+    vesktop.enable = false;
+    vesktop.colors.enable = false;
+    nixcord.colors.enable = false;
+  };
+
+  # home manager specialisations are experimental,
+  #
+  specialisation.day.configuration = {
+    stylix.targets.vesktop.enable = false;
+    stylix.targets.vesktop.colors.enable = false;
   };
 
   programs.nixcord = {

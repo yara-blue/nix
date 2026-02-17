@@ -83,14 +83,18 @@
     rekeyFile = ./. + "/../secrets/mc-server-address.age";
   };
 
+  specialisation.day.configuration = {
+    stylix.base16Scheme = lib.mkForce "${pkgs.base16-schemes}/share/themes/selenized-light.yaml";
+  };
+
   stylix = {
     enable = true;
     # anything from: https://tinted-theming.github.io/tinted-gallery/
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa.yaml";
-	# base16Scheme = "${pkgs.base16-schemes}/share/themes/selenized-light.yaml";
-	# base16Scheme = "${pkgs.base16-schemes}/share/themes/solarized-light.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/selenized-light.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/solarized-light.yaml";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine-moon.yaml";
 
     targets.plymouth.enable = false;
@@ -118,6 +122,18 @@
         name = "Noto Color Emoji";
       };
     };
+  };
+
+  systemd.services.theme-switcher = {
+    enable = true;
+    description = "switch to dark mode at night, light mode during the day";
+    unitConfig = {
+      Type = "simple";
+    };
+    serviceConfig = {
+      ExecStart = "${pkgs.switch-theme}/bin/switch-theme";
+    };
+    wantedBy = [ "multi-user.target" ];
   };
 
   xdg = {
