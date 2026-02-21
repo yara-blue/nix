@@ -105,5 +105,6 @@
         };
       };
     };
+    mergiraf.enable = true;
   };
 }

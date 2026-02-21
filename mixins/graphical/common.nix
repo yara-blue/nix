@@ -18,6 +18,9 @@
 	qimgv
 	darktable
 
+	# document viewing
+	foliate # ebook viewer (supports pdf as well)
+
     alacritty
     alacritty-theme
     swappy # clipboard screenshot editor
