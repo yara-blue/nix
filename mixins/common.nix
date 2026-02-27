@@ -5,6 +5,7 @@
   config,
   myOverlays,
   home-manager,
+  hostname,
   ...
 }:
 {
@@ -31,8 +32,8 @@
     # other
     "v" = "nvim";
     "m" = "neomutt";
-	"la" = "exa -la";
-	"ls" = "exa";
+    "la" = "exa -la";
+    "ls" = "exa";
 
     "tt" = "trash put";
     "ctrlc" = "wl-copy";
@@ -52,11 +53,11 @@
     dina-font
     proggyfonts
     libertine
-	nerd-fonts.open-dyslexic
-	nerd-fonts.im-writing
-	nerd-fonts.fira-code
-	nerd-fonts.caskaydia-mono
-	nerd-fonts.fantasque-sans-mono
+    nerd-fonts.open-dyslexic
+    nerd-fonts.im-writing
+    nerd-fonts.fira-code
+    nerd-fonts.caskaydia-mono
+    nerd-fonts.fantasque-sans-mono
   ];
 
   # enable usb automount
@@ -94,18 +95,26 @@
     identityPaths = [ "/home/yara/.ssh/yara_agenix_ed25519" ]; # TODO relative?
   };
 
-  age.rekey = {
-    # Obtain this using `ssh-keyscan` or by looking it up in your ~/.ssh/known_hosts
-    # Key for the user that needs to decrypt?
-    hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIzIRtes7reuVAAUZnRj5O3ti+aSURofgbS4DbTkmVvU yara@abydos";
-
-    masterIdentities = [
-      /home/yara/nix/age-yubikey-identity-1b1c41c4.pub # TODO path
-      /home/yara/nix/age-yubikey-identity-3035da2f.pub # TODO path
-    ];
-    storageMode = "local";
-    localStorageDir = ./. + "/../secrets/rekeyed/${config.networking.hostName}";
-  };
+  age.rekey =
+    let
+      hostPubkey =
+        {
+          "work" =
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPtMJfpjMBdWXrXEzm8wvuvVVSl5IQqDJv0slYnGuhJA yara@work";
+          "abydos" =
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIzIRtes7reuVAAUZnRj5O3ti+aSURofgbS4DbTkmVvU yara@abydos";
+        }
+        ."${hostname}";
+    in
+    {
+	  inherit hostPubkey;
+      masterIdentities = [
+        /home/yara/nix/age-yubikey-identity-1b1c41c4.pub # TODO path
+        /home/yara/nix/age-yubikey-identity-3035da2f.pub # TODO path
+      ];
+      storageMode = "local";
+      localStorageDir = ./. + "/../secrets/rekeyed/${config.networking.hostName}";
+    };
 
   # users.users.root.hashedPasswordFile = config.age.secrets.root-pw-hash.path;
 }
