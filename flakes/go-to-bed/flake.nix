@@ -27,24 +27,28 @@
             alsa-utils
           ];
           text = ''
-					if [ "$EUID" -ne 0 ]
-					  then echo "Please run as root"
-					  exit
-					fi
+			if [ "$EUID" -ne 0 ]
+			  then echo "Please run as root"
+			  exit
+			fi
 
-					systemctl poweroff --when 30s
-					if [[ " $* " == *" --play-sound "* ]]; then
-						aplay ${soundFile} &
-					fi
+			systemctl poweroff --when 30s
+			if [[ " $* " == *" --play-sound "* ]]; then
+				# find a xdg_runtime_dir
+				# shellcheck disable=SC2012
+				first_user=$(${pkgs.coreutils-full}/bin/ls /run/user -1 | head -n 1)
+				export XDG_RUNTIME_DIR=/run/user/$first_user
+				aplay ${soundFile}
+			fi
 
-					if [[ " $* " == *" --notifications "* ]]; then
-						last_id=5
-						for i in {0..30}; do
-							last_id=$(notify-send \
-								--urgency=critical \
-								--replace-id="$last_id"
-								"System will shutdown in $((30 - i))s")
-						done
+			if [[ " $* " == *" --notifications "* ]]; then
+				last_id=5
+				for i in {0..30}; do
+					last_id=$(notify-send \
+						--urgency=critical \
+						--replace-id="$last_id"
+						"System will shutdown in $((30 - i))s")
+				done
 					fi
 				  '';
         };
