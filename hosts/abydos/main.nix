@@ -69,6 +69,11 @@
     };
   };
 
+  services.go-to-bed = {
+    enable = true;
+    time = "01:30";
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.yara = {
     isNormalUser = true;

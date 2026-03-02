@@ -29,6 +29,8 @@
     stylix.url = "github:nix-community/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
     nixcord.url = "github:FlameFlag/nixcord";
+	go-to-bed.url = "path:flakes/go-to-bed";
+	go-to-bed.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -43,6 +45,7 @@
       break-enforcer,
       home-automation,
       stylix,
+	  go-to-bed,
       ...
     }@inputs:
     let
@@ -55,6 +58,7 @@
         agenix-rekey.overlays.default
         break-enforcer.overlays.default # makes break-enforcer available under pkgs
         home-automation.overlays.default
+		go-to-bed.overlays.default
       ];
 
       machine =
@@ -86,6 +90,7 @@
             }
             # make the nixos break-enforcer module available
             break-enforcer.nixosModules.break-enforcer
+			go-to-bed.nixosModules.go-to-bed
           ];
         };
     in
