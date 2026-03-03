@@ -55,7 +55,10 @@
             ];
             text = ''
               			if device=$(cat /var/cache/default_sink_hw); then
-              				aplay --device "$device" ${soundFile}
+							# if aplay fails thats because pipewire has claimed
+							# the device, so we are not on boot. Do not play
+							# sound.
+              				aplay --device "$device" ${soundFile} || true
               			fi'';
           };
         };

@@ -43,8 +43,8 @@ in
       wantedBy = [ "timers.target" ];
       partOf = [ "go-to-bed.service" ];
       timerConfig = {
-        OnCalendar = "At ${cfg.time}:00 every day";
-        unit = "go-to-bed.service";
+        OnCalendar = "${cfg.time}:00";
+        Unit = "go-to-bed.service";
       };
     };
   };

@@ -1,5 +1,3 @@
-# also need services.systemdbus-notify.enable = true; For notify send to work
-
 {
   description = "Shutdown the system when it's time to go to bed";
 
@@ -32,7 +30,6 @@
 			  exit
 			fi
 
-			systemctl poweroff --when 30s
 			if [[ " $* " == *" --play-sound "* ]]; then
 				# find a xdg_runtime_dir
 				# shellcheck disable=SC2012
@@ -48,8 +45,10 @@
 						--urgency=critical \
 						--replace-id="$last_id"
 						"System will shutdown in $((30 - i))s")
+					sleep 1
 				done
-					fi
+			fi
+			systemctl poweroff
 				  '';
         };
       in

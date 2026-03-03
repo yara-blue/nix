@@ -71,7 +71,7 @@
 
   services.go-to-bed = {
     enable = true;
-    time = "01:30";
+    time = "00:50";
   };
   services.startup-sound = {
     enable = true;
