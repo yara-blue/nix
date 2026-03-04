@@ -89,10 +89,10 @@
     // Disable ligatures:
     "calt": false
   },
-  "buffer_font_family": "Ubuntu",
+  "buffer_font_family": "FantasqueSansM Nerd Font Mono",
   "buffer_line_height": "standard",
   "buffer_font_weight": 100.0,
-  "buffer_font_size": 23.0,
+  "buffer_font_size": 25.0,
   "theme": {
     "mode": "dark",
     // This one is switched by bash script

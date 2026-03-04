@@ -21,10 +21,13 @@
       ignores = [
         ".direnv"
       ];
-      # signing = { #soon tm
-      #   key = "git@yara.blue";
-      #   signByDefault = false;
-      # };
+      signing = { #soon tm
+		format = "ssh";
+		# TODO add private key to agenix (now in .ssh on the work system)
+		# https://developers.yubico.com/SSH/Securing_git_with_SSH_and_FIDO2.html
+		key = "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIOcnSx0wDTKZr4i4YZXosm+zgMsRZfFhmHEtgBpTwIIZAAAABHNzaDo= Git signing key git@yara.blue";
+        signByDefault = true;
+      };
     };
 
     direnv = {
@@ -53,16 +56,14 @@
           # sponge   # remove failed commands from history
         ]);
     };
-    # soon
     jujutsu = {
       enable = true;
       settings.user = {
         email = "git@yara.blue";
         name = "Yara";
         behavior = "own";
-        backend = "gpg";
-        # yubikey backed signing subkey
-        key = "12A0067B454A920F";
+        backend = "ssh";
+		key = "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIOcnSx0wDTKZr4i4YZXosm+zgMsRZfFhmHEtgBpTwIIZAAAABHNzaDo= Git signing key git@yara.blue";
 
         ui = {
           paginate = "never";
