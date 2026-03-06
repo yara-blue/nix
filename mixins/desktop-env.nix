@@ -136,14 +136,74 @@
     wantedBy = [ "multi-user.target" ];
   };
 
-  xdg = {
-    portal = {
-      enable = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-wlr
-        xdg-desktop-portal-gtk
-      ];
+  # maybe read this? https://soyuka.me/make-screen-sharing-wayland-sway-work/
+  xdg.portal = {
+    enable = true;
+    config = {
+      sway = {
+        # default = [
+        #   "wlr"
+        #   "gtk"
+        # ];
+        # Source: https://gitlab.archlinux.org/archlinux/packaging/packages/sway/-/commit/87acbcfcc8ea6a75e69ba7b0c976108d8e54855b
+        "org.freedesktop.impl.portal.Inhibit" = "none";
+
+        # See https://github.com/NixOS/nixpkgs/issues/262286#issuecomment-2495558476
+
+        # wlr interfaces
+        "org.freedesktop.impl.portal.ScreenCast" = "wlr";
+        "org.freedesktop.impl.portal.Screenshot" = "wlr";
+
+        # gnome-keyring interfaces
+        "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
+
+        "org.freedesktop.impl.portal.Settings" = "darkman";
+
+        # GTK interfaces
+        "org.freedesktop.impl.portal.FileChooser" = "gtk";
+        "org.freedesktop.impl.portal.AppChooser" = "gtk";
+        "org.freedesktop.impl.portal.Print" = "gtk";
+        "org.freedesktop.impl.portal.Notification" = "gtk";
+        # "org.freedesktop.impl.portal.Inhibit" = "gtk";
+        "org.freedesktop.impl.portal.Access" = "gtk";
+        "org.freedesktop.impl.portal.Account" = "gtk";
+        "org.freedesktop.impl.portal.Email" = "gtk";
+        "org.freedesktop.impl.portal.DynamicLauncher" = "gtk";
+        "org.freedesktop.impl.portal.Lockdown" = "gtk";
+        # "org.freedesktop.impl.portal.Settings" = "gtk";
+        "org.freedesktop.impl.portal.Wallpaper" = "gtk";
+
+        # Gnome interfaces
+        # "org.freedesktop.impl.portal.Access" = "gnome";
+        # "org.freedesktop.impl.portal.Account" = "gnome";
+        # "org.freedesktop.impl.portal.AppChooser" = "gnome";
+        "org.freedesktop.impl.portal.Background" = "gnome";
+        "org.freedesktop.impl.portal.Clipboard" = "gnome";
+        # "org.freedesktop.impl.portal.DynamicLauncher" = "gnome";
+        # "org.freedesktop.impl.portal.FileChooser" = "gnome";
+        "org.freedesktop.impl.portal.InputCapture" = "gnome";
+        # "org.freedesktop.impl.portal.Lockdown" = "gnome";
+        # "org.freedesktop.impl.portal.Notification" = "gnome";
+        # "org.freedesktop.impl.portal.Print" = "gnome";
+        "org.freedesktop.impl.portal.RemoteDesktop" = "gnome";
+        # "org.freedesktop.impl.portal.ScreenCast" = "gnome";
+        # "org.freedesktop.impl.portal.Screenshot" = "gnome";
+        # "org.freedesktop.impl.portal.Settings" = "gnome";
+        # "org.freedesktop.impl.portal.Wallpaper" = "gnome";
+      };
     };
+    xdgOpenUsePortal = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-wlr
+      gnome-keyring
+    ];
+    config.common.default = "gtk"; # TODO: set per-interface portal
+    wlr.enable = true;
+  };
+
+  environment.sessionVariables = {
+    XDG_CURRENT_DESKTOP = "sway";
   };
 
 }
