@@ -107,6 +107,10 @@
     device = "asgard:/srv/videos/series";
     fsType = "nfs4";
   };
+  fileSystems."/home/yara/Videos/Movies" = {
+    device = "asgard:/srv/videos/movies";
+    fsType = "nfs4";
+  };
   fileSystems."/home/yara/Share" = {
     device = "asgard:/srv/share";
     fsType = "nfs4";
