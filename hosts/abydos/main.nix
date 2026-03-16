@@ -81,9 +81,9 @@
   users.users.yara = {
     isNormalUser = true;
     description = "Yara";
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKked5UDb893TUhcatCEqcUWqZE0dbfnoG4UjJQtXXnC"
-    ];
+    # openssh.authorizedKeys.keys = [ // laptop
+    #   "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKked5UDb893TUhcatCEqcUWqZE0dbfnoG4UjJQtXXnC"
+    # ];
     extraGroups = [
       "networkmanager"
       "wheel"
