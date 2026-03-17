@@ -11,6 +11,7 @@
     zoxide
     direnv
     git
+	gh # official command line interface to github :(
     eza
     bat
 	hexyl # hex editor
