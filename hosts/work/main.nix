@@ -71,14 +71,6 @@
       "wheel"
     ];
   };
-  users.users.kate = {
-    isNormalUser = true;
-    description = "Kate";
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEHWfBIxvY4c0Rdava/cAEa3qGUOxMSt4Cu0Ap7RtSK7"
-    ];
-    extraGroups = [ "networkmanager" ];
-  };
 
   # Install firefox.
   programs.firefox.enable = true;
