@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 # TODO patch some of the neovim plugins to provide their needed executables?
 # (like ripgrep ast-grep etc)
@@ -14,12 +14,15 @@
 {
   programs.neovim = {
     enable = true;
+    defaultEditor = true;
+    package = pkgs.stable.neovim-unwrapped;
+
     viAlias = false;
     vimAlias = false;
     withPython3 = false;
     withRuby = false;
 
-    plugins = with pkgs.vimPlugins; [
+    plugins = with pkgs.stable.vimPlugins; [
 
       # Dependencies
       plenary-nvim
@@ -38,7 +41,7 @@
       nvim-web-devicons
       vim-startify
       vim-jjdescription
-	  mini-base16
+      mini-base16
 
       # Tools
       nvim-tree-lua
@@ -51,7 +54,7 @@
       lsp_lines-nvim
       fidget-nvim
       nvim-lint
-	  crates-nvim
+      crates-nvim
 
       # Text tools
       vim-easy-align

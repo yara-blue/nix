@@ -6,6 +6,8 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+	nixpkgs-stable.url = "github:NixOS/nixpkgs";
+	nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     rahul-config.url = "github:rrbutani/nix-config";
     flake-utils.url = "github:numtide/flake-utils";
@@ -54,6 +56,20 @@
       inherit (nixpkgs) lib;
       listDir = rahul-config.lib.util.list-dir;
 
+	  stable-packages = final: prev: {
+		  stable = import inputs.nixpkgs-stable {
+			  inherit (final) system;
+			  config.allowUnfree = true;
+		  };
+	  };
+
+	  unstable-packages = final: prev: {
+		  unstable = import inputs.nixpkgs-unstable {
+			  inherit (final) system;
+			  config.allowUnfree = true;
+		  };
+	  };
+
       myOverlays = [
         self.overlays.default
         ragenix.overlays.default
@@ -62,6 +78,8 @@
         home-automation.overlays.default
 		inputs.go-to-bed.overlays.default
 		inputs.startup-sound.overlays.default
+		stable-packages
+		unstable-packages
       ];
 
       machine =
