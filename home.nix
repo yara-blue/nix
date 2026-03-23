@@ -193,16 +193,44 @@
       name = "default";
       isDefault = true;
       search = {
+        engines = {
+          "kagi" = {
+            urls = [ { template = "https://kagi.com/search?q={searchTerms}"; } ];
+            icon = "https://kagi.com/asset/4f24904/kagi_assets/logos/yellow_3.svg";
+            definedAliases = [ "@kagi" ];
+          };
+
+          "Nix Packages" = {
+            urls = [
+              {
+                template = "https://search.nixos.org/packages";
+                params = [
+                  {
+                    name = "type";
+                    value = "packages";
+                  }
+                  {
+                    name = "query";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }
+            ];
+            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            definedAliases = [ "@np" ];
+          };
+        };
         force = true;
-        default = "ddg";
+        default = "kagi";
         order = [
+          "kagi"
           "ddg"
           "google"
         ];
       };
       settings = {
         extensions.autoDisableScopes = 0;
-        browser.search.defaultenginename = "ddg";
+        browser.search.defaultenginename = "kagi";
       };
       extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
         ublock-origin
