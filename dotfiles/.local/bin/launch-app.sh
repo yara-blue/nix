@@ -4,6 +4,7 @@ set -e
 
 desktops=$(kickoff-dot-desktop)
 screenshot="\
+	Music = elisa
 	Area to clipboard = screenshot.sh area clipboard
 	Area to file = screenshot.sh area file
 	Fullscreen to clipboard = screenshot.sh fullscreen clipboard

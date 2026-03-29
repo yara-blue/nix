@@ -226,7 +226,6 @@
         leechblock-ng
         passff
         vimium-c
-
       ];
     };
   };
