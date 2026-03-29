@@ -21,6 +21,9 @@
     # document viewing
     foliate # ebook viewer (supports pdf as well)
 
+	# music player
+	kdePackages.elisa
+
     alacritty
     alacritty-theme
     swappy # clipboard screenshot editor
