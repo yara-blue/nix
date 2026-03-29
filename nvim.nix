@@ -1,28 +1,17 @@
 { pkgs, inputs, ... }:
 
-# TODO patch some of the neovim plugins to provide their needed executables?
-# (like ripgrep ast-grep etc)
-# let
-# 	telescope_ast_grep = pkgs.vimPlugins.telescope-sg.override {
-# 		postInstall = ''
-#
-# 		''
-#
-# 	};
-# in
-
 {
   programs.neovim = {
     enable = true;
     defaultEditor = true;
-    package = pkgs.stable.neovim-unwrapped;
+    package = pkgs.unstable.neovim-unwrapped;
 
     viAlias = false;
     vimAlias = false;
     withPython3 = false;
     withRuby = false;
 
-    plugins = with pkgs.stable.vimPlugins; [
+    plugins = with pkgs.stable.vimPlugins; [ # cause treesitter ...
 
       # Dependencies
       plenary-nvim
@@ -61,7 +50,7 @@
 
       # Other
       leap-nvim
-      neomutt-vim
+      pkgs.unstable.vimPlugins.neomutt-vim
       nvim-lspconfig
       typst-preview-nvim
 

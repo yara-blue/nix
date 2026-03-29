@@ -17,18 +17,6 @@
     pkgs.atuin
   ];
 
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplications = {
-      "image/*" = "vipsdisp.desktop";
-      "text/html" = "firefox.desktop";
-      "x-scheme-handler/http" = "firefox.desktop";
-      "x-scheme-handler/https" = "firefox.desktop";
-      "x-scheme-handler/about" = "firefox.desktop";
-      "x-scheme-handler/unknown" = "firefox.desktop";
-    };
-  };
-
   services.gammastep.settings = {
     enable = true;
     provider = "manual";
@@ -246,6 +234,24 @@
   programs.alacritty = {
     enable = true;
   };
+
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "image/*" = "vipsdisp.desktop";
+      "text/html" = "firefox.desktop";
+      "x-scheme-handler/http" = "firefox.desktop";
+      "x-scheme-handler/https" = "firefox.desktop";
+      "x-scheme-handler/about" = "firefox.desktop";
+      "x-scheme-handler/unknown" = "firefox.desktop";
+    };
+  };
+
+  # xdg.portal = { enable = true;
+  #      xdgOpenUsePortal = true;
+  #      extraPortals = with pkgs; [ xdg-desktop-portal-gtk xdg-desktop-portal-wlr ];
+  #      config.common.default = "gtk"; # TODO: set per-interface portal
+  #    };
 
   home.sessionVariables = {
     NIX_PATH = "nixpkgs=flake:nixpkgs";
