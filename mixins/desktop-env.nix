@@ -16,7 +16,6 @@
     hyprpicker # color picker
     kooha # screen recording
 
-    inputs.nixpkgs-wayland.packages.${system}.sway-unwrapped
     waybar
     # widgets
     text-widget
@@ -54,8 +53,7 @@
     enable = true;
     settings = rec {
       initial_session = {
-        command = "${inputs.nixpkgs-wayland.packages.x86_64-linux.sway-unwrapped}/bin/sway";
-        # command = "${pkgs.sway}/bin/sway";
+        command = "${config.programs.sway.package}/bin/sway";
         user = "yara";
       };
       default_session = initial_session;

@@ -8,7 +8,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     rahul-config.url = "github:rrbutani/nix-config";
     flake-utils.url = "github:numtide/flake-utils";
     ragenix.url = "github:yaxitech/ragenix";
