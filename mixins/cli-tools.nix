@@ -25,6 +25,7 @@
     hyperfine
     tokei
     watchexec
+	file
 
     pass
     gnupg

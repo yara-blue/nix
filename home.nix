@@ -37,6 +37,9 @@
     ./vim_theme.nix
   ];
 
+  stylix.cursor.package = pkgs.rose-pine-cursor;
+  stylix.cursor.name = "BreezeX-RosePineDawn-Linux"; # dark: BreezeX-RosePine-Linux
+  stylix.cursor.size = 24;
   stylix.targets = {
     # native neovim themes better (highlight groups & more shades)
     neovim.enable = false;
@@ -149,14 +152,6 @@
       };
     };
 
-  home.pointerCursor = {
-    gtk.enable = true;
-    x11.enable = true;
-    name = "WhiteSur-cursors";
-    package = pkgs.whitesur-cursors;
-    size = 24;
-  };
-
   programs.atuin = {
     enable = true;
     enableBashIntegration = true;
@@ -236,8 +231,9 @@
 
   xdg.mimeApps = {
     enable = true;
-    defaultApplications = {
-      "image/*" = "vipsdisp.desktop";
+    defaultApplications = { # file --mime-type -b
+	  "application/*.document" = "libreoffice.desktop";
+      "image/*" = "vipsdisp.desktop"; #TODO why no worky is glob broken?
       "text/html" = "firefox.desktop";
       "x-scheme-handler/http" = "firefox.desktop";
       "x-scheme-handler/https" = "firefox.desktop";
