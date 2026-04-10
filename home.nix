@@ -250,12 +250,15 @@
     enable = true;
   };
 
+  xdg.mime.enable = true;
   xdg.mimeApps = {
     enable = true;
-    defaultApplications = { # file --mime-type -b
-	  "application/*.document" = "libreoffice.desktop";
-      "image/*" = "vipsdisp.desktop"; #TODO why no worky is glob broken?
+    defaultApplications = {
+      # file --mime-type -b
+      "application/*.document" = "libreoffice.desktop";
+      "image/*" = "vipsdisp.desktop";
       "text/html" = "firefox.desktop";
+      "application/pdf" = "zathura.desktop";
       "x-scheme-handler/http" = "firefox.desktop";
       "x-scheme-handler/https" = "firefox.desktop";
       "x-scheme-handler/about" = "firefox.desktop";
