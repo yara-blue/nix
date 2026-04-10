@@ -81,6 +81,27 @@
     };
   };
 
+  programs.zathura = {
+    enable = true;
+    options = {
+      "font" = "monospace normal 24";
+      "incremental-search" = true;
+    };
+    mappings = {
+      n = "scroll up";
+      m = "scroll down";
+      s = "scroll left";
+      t = "scroll right";
+
+      N = "scroll half-up";
+      M = "scroll half-down";
+
+      h = "search forward";
+      H = "search backward";
+      r = "reload";
+    };
+  };
+
   programs.waybar =
     let
       wrapped = pkgs.writeShellScriptBin "mc-player-count-wrapped" ''
