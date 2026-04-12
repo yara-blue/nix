@@ -7,9 +7,10 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "tab_size": 5,
   "disable_ai": false,
   "agent": {
-    "default_profile": "ask",
+    "default_profile": "write",
     "tool_permissions": {
       "default": "confirm",
       "tools": {}
@@ -73,7 +74,7 @@
     // Disable ligatures:
     "calt": false
   },
-  "buffer_font_family": "OpenDyslexic Nerd Font",
+  "buffer_font_family": "Ubuntu",
   "buffer_line_height": "standard",
   "buffer_font_weight": 100.0,
   "buffer_font_size": 23.0,

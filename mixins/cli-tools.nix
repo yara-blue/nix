@@ -42,6 +42,7 @@
 	helix
     websocat # used for typst preview from neovim
     neomutt
+    md-to-pdf
 
     killall
 	procps # pkill etc
