@@ -118,7 +118,7 @@
 // Code blocks: green monospace
 //
   show raw: set block(inset: (left: 2em, top: 1em, right: 1em, bottom: 1em ))
-  show raw: set text(fill: rgb("#116611"), size: 9pt, )
+  show raw: set text(fill: rgb("#116611"), size: 9pt, font: "CaskaydiaMono NF")
 
 // Images and figures:
 //

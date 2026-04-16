@@ -24,6 +24,7 @@
           overlays = [ newsreader-font.overlays.default ];
         };
         newsreader = pkgs.newsreader;
+		fantasque = pkgs.nerd-fonts.fantasque-sans-mono;
         article_template = ./article.typ;
         review_template = ./review.typ;
         md-to-pdf = pkgs.writeShellApplication {
@@ -63,7 +64,7 @@
             ${pkgs.pandoc}/bin/pandoc "$markdown_file" \
               -f markdown --wrap=none \
               -t pdf --pdf-engine=${pkgs.typst}/bin/typst \
-              --pdf-engine-opt=--font-path=${newsreader}/share/fonts/truetype \
+              --pdf-engine-opt=--font-path=${newsreader}/share/fonts/truetype:${fantasque}/share/fonts/truetype \
               -V template="$template" \
               -o "$pdf_file"
 
