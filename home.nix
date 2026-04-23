@@ -291,8 +291,19 @@
           );
         };
       }
-    ) (lib.filesystem.listFilesRecursive ./dotfiles)
+    ) (builtins.filter
+        # Excluded because xdg.configFile below owns this path with mkForce,
+        # overriding the generated file from programs.neovim
+        (p: toString p != toString ./dotfiles/.config/nvim/init.lua)
+        (lib.filesystem.listFilesRecursive ./dotfiles))
   ); # dotfiles dir is in the same directory this file
+
+  # programs.neovim generates its own init.lua; force our dotfiles symlink to win
+  xdg.configFile."nvim/init.lua" = lib.mkForce {
+    source = config.lib.file.mkOutOfStoreSymlink (
+      config.home.sessionVariables.NIX_CONF_DIR + "/dotfiles/.config/nvim/init.lua"
+    );
+  };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

@@ -1,10 +1,10 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
   programs.neovim = {
     enable = true;
     defaultEditor = true;
-    package = pkgs.unstable.neovim-unwrapped;
+    package = pkgs.stable.neovim-unwrapped;
 
     viAlias = false;
     vimAlias = false;
@@ -50,7 +50,7 @@
 
       # Other
       leap-nvim
-      pkgs.unstable.vimPlugins.neomutt-vim
+      # pkgs.unstable.vimPlugins.neomutt-vim
       nvim-lspconfig
       typst-preview-nvim
 
