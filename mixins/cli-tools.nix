@@ -13,6 +13,7 @@
     git
     eza
     bat
+	hexyl # hex editor
     usbutils
     htop
     btop
