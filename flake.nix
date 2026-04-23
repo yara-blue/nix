@@ -37,6 +37,8 @@
 	startup-sound.inputs.nixpkgs.follows = "nixpkgs";
 	md-to-pdf.url = "path:flakes/md-to-pdf";
 	md-to-pdf.inputs.nixpkgs.follows = "nixpkgs";
+	playground.url = "path:flakes/playground";
+	playground.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -80,6 +82,7 @@
 		inputs.go-to-bed.overlays.default
 		inputs.startup-sound.overlays.default
 		inputs.md-to-pdf.overlays.default
+		inputs.playground.overlays.default
 		stable-packages
 		unstable-packages
       ];
