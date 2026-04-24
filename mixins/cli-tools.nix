@@ -18,7 +18,7 @@
     usbutils
     htop
     btop
-    dua # disk usage
+    dua # disk usage analyzer (use with -i)
     ripgrep
     ast-grep
     neomutt
