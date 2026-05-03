@@ -35,6 +35,7 @@ in
   networking.hostId = "507c8f16";
   # boot.zfs.devNodes = "/dev/disk/by-partuuid/5af56b00-3251-471c-a512-bf0bdebbccea";
   boot.zfs.devNodes = "/dev/disk/by-partuuid";
+  boot.zfs.forceImportRoot = false;
 
   systemd.services.zfs-mount.enable = false;
   fileSystems."/home/yara/Projects" = {

@@ -46,7 +46,7 @@
 
   environment.systemPackages = with pkgs; [
     wireguard-tools
-    protonvpn-gui # use this, wireguard setup above does
+    proton-vpn # use this, wireguard setup above does
     # not work, no clue why
   ];
 }

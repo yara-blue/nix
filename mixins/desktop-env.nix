@@ -60,17 +60,16 @@
     };
   };
 
+  imports = [
+    ./desktop-env/niri.nix
+    ./desktop-env/gnome.nix
+    ./desktop-env/sway.nix
+    ./desktop-env/gdm.nix
+  ];
+
   # stores secrets in pass password store
   services.passSecretService.enable = true;
   security.polkit.enable = true;
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-    extraSessionCommands = ''
-      		export MOZ_ENABLE_WAYLAND=1
-      		export WLR_RENDERER=vulkan
-      	'';
-  };
 
   # for minecraft server plugin
   age.secrets.mc-server-address = {
@@ -140,6 +139,7 @@
         xdg-desktop-portal-wlr
         xdg-desktop-portal-gtk
       ];
+      config.common.default = [ "gtk" ];
     };
   };
 }
