@@ -49,16 +49,16 @@
     break-end-notify = [ "audio" ];
     work-reset-notify = [ ];
   };
-  services.greetd = {
-    enable = true;
-    settings = rec {
-      initial_session = {
-        command = "${config.programs.sway.package}/bin/sway";
-        user = "yara";
-      };
-      default_session = initial_session;
-    };
-  };
+  # services.greetd = {
+  #   enable = true;
+  #   settings = rec {
+  #     initial_session = {
+  #       command = "${config.programs.sway.package}/bin/sway";
+  #       user = "yara";
+  #     };
+  #     default_session = initial_session;
+  #   };
+  # };
 
   imports = [
     ./desktop-env/niri.nix
@@ -66,6 +66,11 @@
     ./desktop-env/sway.nix
     ./desktop-env/gdm.nix
   ];
+
+  gdm.enable = true;
+  gnome.enable = true;
+  sway.enable = true;
+  niri.enable = true;
 
   # stores secrets in pass password store
   services.passSecretService.enable = true;

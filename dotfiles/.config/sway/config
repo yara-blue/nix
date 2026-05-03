@@ -30,7 +30,7 @@ set $term alacritty
 # exec --no-startup-id redshift -l 52.7:5.8
 # moved to systemd
 exec --no-startup-id waybar
-exec --no-startup-id wallpaper.sh
+exec --no-startup-id $HOME/.local/bin/wallpaper.sh
 # exec --no-startup-id /usr/bin/bash ~/.config/sway/swap_colors.sh
 # exec --no-startup-id /usr/bin/bash ~/bin/set_audio.sh
 
@@ -73,7 +73,7 @@ output HDMI-A-1 {
     bindsym $mod+q kill
 
     # Start your launcher
-    bindsym $mod+d exec launch-app.sh
+    bindsym $mod+d exec $HOME/.local/bin/launch-app.sh
 
 	# # Toggle HDR
 	# bindsym $mod+w swaymsg output HDMI-A-1 hdr toggle

@@ -17,5 +17,6 @@ in
   config = lib.mkIf cfg.enable {
     services.displayManager.gdm.enable = true;
     services.displayManager.sessionPackages = cfg.sessionPackages;
+	security.pam.services.gdm.enableGnomeKeyring = true;
   };
 }

@@ -25,20 +25,25 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    niri-unstable.url = "github:YaLTeR/niri";
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.niri-unstable.follows = "niri-unstable";
+    };
     zed.url = "github:zed-industries/zed";
     zed.inputs.nixpkgs.follows = "nixpkgs";
     stylix.url = "github:nix-community/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
     nixcord.url = "github:FlameFlag/nixcord";
 
-	go-to-bed.url = "path:flakes/go-to-bed";
-	go-to-bed.inputs.nixpkgs.follows = "nixpkgs";
-	startup-sound.url = "path:flakes/startup-sound";
-	startup-sound.inputs.nixpkgs.follows = "nixpkgs";
-	md-to-pdf.url = "path:flakes/md-to-pdf";
-	md-to-pdf.inputs.nixpkgs.follows = "nixpkgs";
-	playground.url = "path:flakes/playground";
-	playground.inputs.nixpkgs.follows = "nixpkgs";
+    go-to-bed.url = "path:flakes/go-to-bed";
+    go-to-bed.inputs.nixpkgs.follows = "nixpkgs";
+    startup-sound.url = "path:flakes/startup-sound";
+    startup-sound.inputs.nixpkgs.follows = "nixpkgs";
+    md-to-pdf.url = "path:flakes/md-to-pdf";
+    md-to-pdf.inputs.nixpkgs.follows = "nixpkgs";
+    playground.url = "path:flakes/playground";
+    playground.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -53,25 +58,26 @@
       break-enforcer,
       home-automation,
       stylix,
+      niri,
       ...
     }@inputs:
     let
       inherit (nixpkgs) lib;
       listDir = rahul-config.lib.util.list-dir;
 
-	  stable-packages = final: prev: {
-		  stable = import inputs.nixpkgs-stable {
-			  inherit (final) system;
-			  config.allowUnfree = true;
-		  };
-	  };
+      stable-packages = final: prev: {
+        stable = import inputs.nixpkgs-stable {
+          inherit (final) system;
+          config.allowUnfree = true;
+        };
+      };
 
-	  unstable-packages = final: prev: {
-		  unstable = import inputs.nixpkgs-unstable {
-			  inherit (final) system;
-			  config.allowUnfree = true;
-		  };
-	  };
+      unstable-packages = final: prev: {
+        unstable = import inputs.nixpkgs-unstable {
+          inherit (final) system;
+          config.allowUnfree = true;
+        };
+      };
 
       myOverlays = [
         self.overlays.default
@@ -79,12 +85,13 @@
         agenix-rekey.overlays.default
         break-enforcer.overlays.default # makes break-enforcer available under pkgs
         home-automation.overlays.default
-		inputs.go-to-bed.overlays.default
-		inputs.startup-sound.overlays.default
-		inputs.md-to-pdf.overlays.default
-		inputs.playground.overlays.default
-		stable-packages
-		unstable-packages
+        niri.overlays.niri
+        inputs.go-to-bed.overlays.default
+        inputs.startup-sound.overlays.default
+        inputs.md-to-pdf.overlays.default
+        inputs.playground.overlays.default
+        stable-packages
+        unstable-packages
       ];
 
       machine =
@@ -95,7 +102,7 @@
           modules = [
             ./hosts/${hostname}/main.nix
             ./mixins/common.nix
-			stylix.nixosModules.stylix
+            stylix.nixosModules.stylix
             ragenix.nixosModules.default
             agenix-rekey.nixosModules.default
             home-manager.nixosModules.home-manager
@@ -116,12 +123,18 @@
             }
             # make the nixos break-enforcer module available
             break-enforcer.nixosModules.break-enforcer
-			inputs.go-to-bed.nixosModules.go-to-bed
-			inputs.startup-sound.nixosModules.startup-sound
+            inputs.go-to-bed.nixosModules.go-to-bed
+            inputs.startup-sound.nixosModules.startup-sound
           ];
         };
     in
     {
+      nix.gc = {
+        automatic = true;
+        persistent = true;
+        dates = "weekly";
+        options = "--delete-older-than 30d";
+      };
 
       nixosConfigurations = {
         Work = machine "x86_64-linux" "work";
