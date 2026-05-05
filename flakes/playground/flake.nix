@@ -70,6 +70,6 @@
         playground = self.packages.${prev.system}.default;
       };
 
-      homeManagerModules.default = import ./hm-module.nix self;
+      homeModules.default = import ./hm-module.nix self;
     };
 }

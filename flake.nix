@@ -35,6 +35,7 @@
     stylix.url = "github:nix-community/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
     nixcord.url = "github:FlameFlag/nixcord";
+    nixcord.inputs.nixpkgs.follows = "nixpkgs";
 
     go-to-bed.url = "path:flakes/go-to-bed";
     go-to-bed.inputs.nixpkgs.follows = "nixpkgs";
@@ -89,7 +90,6 @@
         inputs.go-to-bed.overlays.default
         inputs.startup-sound.overlays.default
         inputs.md-to-pdf.overlays.default
-        inputs.playground.overlays.default
         stable-packages
         unstable-packages
       ];

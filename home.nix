@@ -30,6 +30,7 @@
 
   imports = [
     inputs.nixcord.homeModules.nixcord
+    inputs.playground.homeModules.default
     ./git.nix
     ./nfs.nix
     ./nvim.nix
@@ -64,6 +65,8 @@
     stylix.targets.vesktop.enable = false;
     stylix.targets.vesktop.colors.enable = false;
   };
+
+  programs.playground.enable = true;
 
   programs.nixcord = {
     enable = true;
@@ -191,7 +194,7 @@
 
   programs.firefox = {
     enable = true;
-	configPath = "${config.xdg.configHome}/mozilla/firefox";
+    configPath = "${config.xdg.configHome}/mozilla/firefox";
     nativeMessagingHosts = [ pkgs.passff-host ];
     profiles.default = {
       id = 0;
@@ -273,23 +276,27 @@
   };
 
   home.file = builtins.listToAttrs (
-    map (
-      path:
-      let
-        f = lib.strings.removePrefix (inputs.self + "/dotfiles/") (toString path);
-      in
-      {
-        name = f;
-        value = {
-          source = config.lib.file.mkOutOfStoreSymlink (
-            config.home.sessionVariables.NIX_CONF_DIR + "/dotfiles/" + f
-          );
-        };
-      }
-    ) (builtins.filter
-        # Excluded because we gotta do some magic below 
-        (p: toString p != toString ./dotfiles/.config/nvim/init.lua)
-        (lib.filesystem.listFilesRecursive ./dotfiles))
+    map
+      (
+        path:
+        let
+          f = lib.strings.removePrefix (inputs.self + "/dotfiles/") (toString path);
+        in
+        {
+          name = f;
+          value = {
+            source = config.lib.file.mkOutOfStoreSymlink (
+              config.home.sessionVariables.NIX_CONF_DIR + "/dotfiles/" + f
+            );
+          };
+        }
+      )
+      (
+        builtins.filter
+          # Excluded because we gotta do some magic below
+          (p: toString p != toString ./dotfiles/.config/nvim/init.lua)
+          (lib.filesystem.listFilesRecursive ./dotfiles)
+      )
   ); # dotfiles dir is in the same directory this file
 
   # programs.neovim generates its own init.lua; force the symlink to win
