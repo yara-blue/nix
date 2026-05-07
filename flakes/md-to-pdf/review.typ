@@ -216,8 +216,8 @@ show regex("https?://\S+"): set text(style: "normal", rgb("#33d"))
 // THIS IS THE ACTUAL BODY:
 
   set par(
-      leading: 1.3em,
-      spacing: 1.95em
+      leading: 2.2em,
+      spacing: 2.2em
   )
   show heading: set block(
       below: 1em, 
