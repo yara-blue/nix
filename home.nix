@@ -107,11 +107,18 @@
 
   programs.waybar =
     let
-      wrapped = pkgs.writeShellScriptBin "mc-player-count-wrapped" ''
+      mc-player-count = pkgs.writeShellScriptBin "mc-player-count-wrapped" ''
         exec ${pkgs.mc-player-count}/bin/mc-player-count \
           "$(${pkgs.coreutils}/bin/cut -d ':' -f 1 /run/agenix/mc-server-address)" \
           "$(${pkgs.coreutils}/bin/cut -d ':' -f 2 /run/agenix/mc-server-address)"
       '';
+	  ha-text-widget = pkgs.writeShellScriptBin "ha-text-widget-wrapped" ''
+	    exec ${pkgs.text-widget}/bin/ha-text-widget \
+          "$(${pkgs.coreutils}/bin/cut -d ':' -f 1 /run/agenix/mc-server-address)" \
+          "$(${pkgs.coreutils}/bin/cut -d ':' -f 2 /run/agenix/mc-server-address)"
+		  
+	${pkgs.text-widget}/bin/ha-text-widget --server 192.168.1.43:1235 temp hum co2 pm25
+	  '';
     in
     {
       enable = true;
@@ -169,7 +176,7 @@
             format = "{}";
           };
           "custom/minecraft-widget" = {
-            exec = "${wrapped}/bin/mc-player-count-wrapped";
+            exec = "${mc-player-count}/bin/mc-player-count-wrapped";
             format = "{}";
           };
         };

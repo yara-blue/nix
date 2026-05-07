@@ -74,6 +74,8 @@
 
     nix-output-monitor
     comma
+
+	comic-mandown
   ];
 
   # Yubikey
