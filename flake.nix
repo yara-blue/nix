@@ -82,6 +82,7 @@
 
       myOverlays = [
         self.overlays.default
+        (import ./overlays/mandown-patch.nix)
         ragenix.overlays.default
         agenix-rekey.overlays.default
         break-enforcer.overlays.default # makes break-enforcer available under pkgs

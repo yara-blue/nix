@@ -1,6 +1,6 @@
 # based on the suggestion in https://github.com/typst/typst/issues/185
 {
-  description = "Convert a markdown file to a pdf using pandoc and typst";
+  description = "The newsreader font usable in typst";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";

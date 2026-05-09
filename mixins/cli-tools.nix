@@ -78,7 +78,9 @@
     nix-output-monitor
     comma
 
+	# comics
 	comic-mandown
+	kcc # convert for epaper displays
   ];
 
   # Yubikey

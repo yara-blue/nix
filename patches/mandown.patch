@@ -1,0 +1,30 @@
+diff --git a/mandown/sources/source_thecomicseries.py b/mandown/sources/source_thecomicseries.py
+index 66e5e56010..3b606848d0 100644
+--- a/mandown/sources/source_thecomicseries.py
++++ b/mandown/sources/source_thecomicseries.py
+@@ -61,9 +61,6 @@
+         # href is of form /read/title/comics/number
+         first_page_id = pages[0]["href"].split("/")[-1]
+ 
+-        # /comic.php?action=addsubscription&amp;cid=number
+-        comic_id = soup.select_one(".webcomic-subscribe")["href"].split("=")[-1]
+-
+         # we need the total number of pages
+         page_list_urls = soup.select("div.archive-pages .vfpage")
+         index = None
+@@ -95,11 +92,14 @@
+         first_page = soup4.select_one(".is--comic-content img")["src"]
+ 
+         # call their api
++        # The API accepts the comic slug directly via the `webcomic/url/<slug>`
++        # path, so we use `self.id` (the slug) rather than having to scrape a
++        # numeric webcomic id out of the chapter page.
+         page_id = first_page_id
+         all_images: list[str] = [first_page]
+         while len(all_images) < num_pages:
+             data = requests.get(
+-                f"https://comicfury.com/api.php?url=webcomic/id/{comic_id}/comicid/{page_id}/getonsitereadercomics"
++                f"https://comicfury.com/api.php?url=webcomic/url/{self.id}/comicid/{page_id}/getonsitereadercomics"
+             ).json()
+             if not data["status"] or data["error_code"]:
+                 raise RuntimeError(
