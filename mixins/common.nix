@@ -37,6 +37,8 @@
     "tt" = "trash put";
     "ctrlc" = "wl-copy";
     "ctrlv" = "wl-paste";
+
+	"big" = "alacritty msg config font.size=30";
   };
 
   fonts.packages = with pkgs; [
