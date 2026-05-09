@@ -62,6 +62,7 @@
   # enable usb automount
   services.devmon.enable = true;
   services.gvfs.enable = true;
+  services.tumbler.enable =true; # thumbnail support
   services.udisks2.enable = true;
 
   environment.sessionVariables = {

@@ -70,6 +70,9 @@
 
     trashy
 
+	# download & control cameras
+	gphoto2
+
     git-undeadname
 
     nix-output-monitor

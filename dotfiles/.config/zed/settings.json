@@ -23,7 +23,7 @@
   "disable_ai": false,
   "agent": {
     "dock": "right",
-    "default_profile": "ask",
+    "default_profile": "write",
     "tool_permissions": {
       "default": "confirm",
       "tools": {}
