@@ -58,6 +58,7 @@
     nerd-fonts.fira-code
     nerd-fonts.caskaydia-mono
     nerd-fonts.fantasque-sans-mono
+    xkcd-font
   ];
 
   # enable usb automount

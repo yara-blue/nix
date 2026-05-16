@@ -45,6 +45,8 @@
     md-to-pdf.inputs.nixpkgs.follows = "nixpkgs";
     playground.url = "path:flakes/playground";
     playground.inputs.nixpkgs.follows = "nixpkgs";
+	xkcd-font.url = "path:flakes/xkcd-font";
+	xkcd-font.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -91,6 +93,7 @@
         inputs.go-to-bed.overlays.default
         inputs.startup-sound.overlays.default
         inputs.md-to-pdf.overlays.default
+        inputs.xkcd-font.overlays.default
         stable-packages
         unstable-packages
       ];
