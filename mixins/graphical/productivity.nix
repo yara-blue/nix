@@ -34,6 +34,9 @@
     # TODO move somewhere else?
     yubikey-manager
     cryptsetup
+
+	# GUI for routing pipewire nodes
+	crosspipe
   ];
 
   programs.localsend.enable = true;
