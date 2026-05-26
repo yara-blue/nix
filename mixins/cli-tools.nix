@@ -44,6 +44,7 @@
 	helix
     websocat # used for typst preview from neovim
     neomutt
+
     md-to-pdf
 
     killall
@@ -73,6 +74,9 @@
 
 	# download & control cameras
 	gphoto2
+	# compress photos
+	imagemagick # provides mogrify for compression
+	jpegoptim
 
     git-undeadname
 
