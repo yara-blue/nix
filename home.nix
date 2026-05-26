@@ -236,7 +236,7 @@
           };
         };
         force = true;
-        default = "kagi";
+        default = "ddg";
         order = [
           "kagi"
           "ddg"
