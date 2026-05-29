@@ -21,13 +21,13 @@
       ignores = [
         ".direnv"
       ];
-      signing = { #soon tm
-		format = "ssh";
+      # signing = { #soon tm
+		# format = "ssh";
 		# TODO add private key to agenix (now in .ssh on the work system)
 		# https://developers.yubico.com/SSH/Securing_git_with_SSH_and_FIDO2.html
-		key = "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIOcnSx0wDTKZr4i4YZXosm+zgMsRZfFhmHEtgBpTwIIZAAAABHNzaDo= Git signing key git@yara.blue";
-        signByDefault = true;
-      };
+		# key = "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIOcnSx0wDTKZr4i4YZXosm+zgMsRZfFhmHEtgBpTwIIZAAAABHNzaDo= Git signing key git@yara.blue";
+        # signByDefault = true;
+      # };
     };
 
     direnv = {

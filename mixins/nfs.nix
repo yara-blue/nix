@@ -54,11 +54,6 @@ in
     };
   };
 
-  fileSystems."/home/yara/Music" = {
-    device = "asgard:/srv/music";
-    fsType = "nfs4";
-  };
-
   environment.systemPackages = with pkgs; [
     kstart
   ];

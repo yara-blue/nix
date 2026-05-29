@@ -6,6 +6,11 @@
   hostname,
   ...
 }@args:
+let
+  nfs_options = [
+    "nofail"
+  ];
+in
 {
   imports = [
     ./hardware.nix
@@ -81,7 +86,8 @@
   users.users.yara = {
     isNormalUser = true;
     description = "Yara";
-    openssh.authorizedKeys.keys = [ # laptop hexcat
+    openssh.authorizedKeys.keys = [
+      # laptop hexcat
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKked5UDb893TUhcatCEqcUWqZE0dbfnoG4UjJQtXXnC"
     ];
     extraGroups = [
@@ -95,29 +101,42 @@
   # Install firefox.
   programs.firefox.enable = true;
 
+  # NFS shares are lazy-mounted via systemd automount so a downed NAS
+  # never blocks boot. They mount on first access and unmount when idle.
   fileSystems."/home/yara/Documents" = {
     device = "asgard:/home/yara/Documents";
     fsType = "nfs4";
+    options = nfs_options;
   };
   fileSystems."/home/yara/Prive" = {
     device = "asgard:/home/yara/prive";
     fsType = "nfs4";
+    options = nfs_options;
   };
   fileSystems."/home/yara/Videos/Series" = {
     device = "asgard:/srv/videos/series";
     fsType = "nfs4";
+    options = nfs_options;
   };
   fileSystems."/home/yara/Videos/Movies" = {
     device = "asgard:/srv/videos/movies";
     fsType = "nfs4";
+    options = nfs_options;
   };
   fileSystems."/home/yara/Share" = {
     device = "asgard:/srv/share";
     fsType = "nfs4";
+    options = nfs_options;
   };
   fileSystems."/home/yara/Photos" = {
     device = "asgard:/srv/photos";
     fsType = "nfs4";
+    options = nfs_options;
+  };
+  fileSystems."/home/yara/Music" = {
+    device = "asgard:/srv/music";
+    fsType = "nfs4";
+    options = nfs_options;
   };
 
   # Enable the gnome-keyring secrets vault.
