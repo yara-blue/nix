@@ -25,10 +25,9 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    niri-unstable.url = "github:YaLTeR/niri";
     niri = {
       url = "github:sodiboo/niri-flake";
-      inputs.niri-unstable.follows = "niri-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     zed.url = "github:zed-industries/zed";
     zed.inputs.nixpkgs.follows = "nixpkgs";
@@ -45,8 +44,8 @@
     md-to-pdf.inputs.nixpkgs.follows = "nixpkgs";
     playground.url = "path:flakes/playground";
     playground.inputs.nixpkgs.follows = "nixpkgs";
-	xkcd-font.url = "path:flakes/xkcd-font";
-	xkcd-font.inputs.nixpkgs.follows = "nixpkgs";
+    xkcd-font.url = "path:flakes/xkcd-font";
+    xkcd-font.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -129,6 +128,7 @@
             break-enforcer.nixosModules.break-enforcer
             inputs.go-to-bed.nixosModules.go-to-bed
             inputs.startup-sound.nixosModules.startup-sound
+			inputs.dark-sorter.nixosModules.default
           ];
         };
     in

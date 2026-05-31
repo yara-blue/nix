@@ -89,10 +89,6 @@
   #    [[ "$(tty)" == /dev/tty1 ]] && sway
   #'';
 
-  # Enable the gnome-keyring secrets vault.
-  # Will be exposed through DBus to programs willing to store secrets.
-  services.gnome.gnome-keyring.enable = true;
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

@@ -74,6 +74,7 @@
 
   # stores secrets in pass password store
   services.passSecretService.enable = true;
+  services.gnome.gnome-keyring.enable = true;
   security.polkit.enable = true;
 
   # for minecraft server plugin
@@ -137,15 +138,13 @@
     wantedBy = [ "multi-user.target" ];
   };
 
-  xdg = {
-    portal = {
-      enable = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-wlr
-        xdg-desktop-portal-gtk
-      ];
-      config.common.default = [ "gtk" ];
-    };
-    # wlr.enable = true;
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-gnome
+      xdg-desktop-portal-wlr
+    ];
+    config.common.default = [ "gtk" ];
   };
 }

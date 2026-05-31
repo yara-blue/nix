@@ -43,13 +43,13 @@
   "disable_ai": false,
   "agent": {
     "dock": "right",
-    "default_profile": "write",
+    "default_profile": "ask",
     "tool_permissions": {
       "default": "confirm",
       "tools": {}
     },
     "default_model": {
-      "speed": "standard",
+      "speed": "fast",
       "provider": "zed.dev",
       "model": "claude-opus-4-8",
       "enable_thinking": true,
