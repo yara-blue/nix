@@ -14,6 +14,7 @@ in
 {
   imports = [
     ./hardware.nix
+	./remote-builder.nix
     ./../../mixins/desktop-env.nix
     ./../../mixins/build-tools.nix
     ./../../mixins/cli-tools.nix
@@ -70,7 +71,7 @@ in
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;
       PermitRootLogin = "no";
-      AllowUsers = [ "yara" ];
+      AllowUsers = [ "yara" "remotebuild" ];
     };
   };
 
@@ -108,11 +109,11 @@ in
     fsType = "nfs4";
     options = nfs_options;
   };
-  fileSystems."/home/yara/Prive" = {
-    device = "asgard:/home/yara/prive";
-    fsType = "nfs4";
-    options = nfs_options;
-  };
+  # fileSystems."/home/yara/Prive" = {
+  #   device = "asgard:/home/yara/prive";
+  #   fsType = "nfs4";
+  #   options = nfs_options;
+  # };
   fileSystems."/home/yara/Videos/Series" = {
     device = "asgard:/srv/videos/series";
     fsType = "nfs4";
