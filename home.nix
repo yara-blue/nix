@@ -314,7 +314,7 @@
   };
 
   # stylix may needd this
-  gtk.gtk4.theme = config.gtk.theme;
+  # gtk.gtk4.theme = config.gtk.theme;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

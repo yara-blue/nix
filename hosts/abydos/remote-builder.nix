@@ -1,9 +1,9 @@
-{ ... }:
+{ pkgs, ... }:
 {
   users.users.remotebuild = {
     isSystemUser = true;
     group = "remotebuild";
-    useDefaultShell = true;
+    shell = pkgs.bashInteractive;
 
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPVNX7ctEkvsFzEaknryylIgNR9g8J1aoVZaEoyA2NIl root@asgard"

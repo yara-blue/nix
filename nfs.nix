@@ -8,6 +8,8 @@
 # See mixins/nfs.nix for more kerberos setup, like id mapping and the actual
 # mounting
 
+# TODO REPLACE ALL OF THIS WITH NFSv4 OVER TLS: https://vastnfs.vastdata.com/docs/4.5/usage/tls.html
+
 let
   kerberos_principle =
     {

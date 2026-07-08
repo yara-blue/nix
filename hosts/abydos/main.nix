@@ -6,15 +6,10 @@
   hostname,
   ...
 }@args:
-let
-  nfs_options = [
-    "nofail"
-  ];
-in
 {
   imports = [
     ./hardware.nix
-	./remote-builder.nix
+    ./remote-builder.nix
     ./../../mixins/desktop-env.nix
     ./../../mixins/build-tools.nix
     ./../../mixins/cli-tools.nix
@@ -65,7 +60,10 @@ in
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;
       PermitRootLogin = "no";
-      AllowUsers = [ "yara" "remotebuild" ];
+      AllowUsers = [
+        "yara"
+        "remotebuild"
+      ];
     };
   };
 
@@ -98,42 +96,41 @@ in
 
   # NFS shares are lazy-mounted via systemd automount so a downed NAS
   # never blocks boot. They mount on first access and unmount when idle.
-  fileSystems."/home/yara/Documents" = {
+  fileSystems."/home/yara/Documents2" = {
     device = "asgard:/home/yara/Documents";
     fsType = "nfs4";
-    options = nfs_options;
+    options = [ "nofail" ];
   };
   # fileSystems."/home/yara/Prive" = {
   #   device = "asgard:/home/yara/prive";
   #   fsType = "nfs4";
-  #   options = nfs_options;
+  #   options = ["nofail"];
   # };
   fileSystems."/home/yara/Videos/Series" = {
     device = "asgard:/srv/videos/series";
     fsType = "nfs4";
-    options = nfs_options;
+    options = [ "nofail" ];
   };
   fileSystems."/home/yara/Videos/Movies" = {
     device = "asgard:/srv/videos/movies";
     fsType = "nfs4";
-    options = nfs_options;
+    options = [ "nofail" ];
   };
   fileSystems."/home/yara/Share" = {
     device = "asgard:/srv/share";
     fsType = "nfs4";
-    options = nfs_options;
+    options = [ "nofail" ];
   };
   fileSystems."/home/yara/Photos" = {
     device = "asgard:/srv/photos";
     fsType = "nfs4";
-    options = nfs_options;
+    options = [ "nofail" ];
   };
   fileSystems."/home/yara/Music" = {
     device = "asgard:/srv/music";
     fsType = "nfs4";
-    options = nfs_options;
+    options = [ "nofail" ];
   };
-
 
   networking.firewall.enable = false;
 

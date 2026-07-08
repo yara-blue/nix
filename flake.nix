@@ -29,8 +29,6 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    zed.url = "github:zed-industries/zed";
-    zed.inputs.nixpkgs.follows = "nixpkgs";
     stylix.url = "github:nix-community/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
     nixcord.url = "github:FlameFlag/nixcord";
@@ -81,6 +79,7 @@
         };
       };
 
+      # these are set in mixins common
       myOverlays = [
         self.overlays.default
         (import ./overlays/mandown-patch.nix)
@@ -98,10 +97,10 @@
       ];
 
       machine =
-        system: hostname:
+        hostname:
         lib.nixosSystem {
+          # everything is special args is passed to all the modules
           specialArgs = { inherit myOverlays inputs hostname; };
-          system = system;
           modules = [
             ./hosts/${hostname}/main.nix
             ./mixins/common.nix
@@ -119,7 +118,6 @@
                 inherit
                   myOverlays
                   inputs
-                  system
                   hostname
                   ;
               };
@@ -128,7 +126,6 @@
             break-enforcer.nixosModules.break-enforcer
             inputs.go-to-bed.nixosModules.go-to-bed
             inputs.startup-sound.nixosModules.startup-sound
-			inputs.dark-sorter.nixosModules.default
           ];
         };
     in
@@ -141,8 +138,8 @@
       };
 
       nixosConfigurations = {
-        Work = machine "x86_64-linux" "work";
-        Abydos = machine "x86_64-linux" "abydos";
+        Work = machine "work";
+        Abydos = machine "abydos";
       };
 
       agenix-rekey = agenix-rekey.configure {

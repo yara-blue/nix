@@ -35,8 +35,8 @@ in
         cd (${cd-playground}/bin/cd-playground)
       end
       function playground
-        path="$(${playground}/bin/playground)"
-        cd "$path"
+        set path "$(${playground}/bin/playground)"
+        cd $path
         $EDITOR src/main.rs
       end
     '';
