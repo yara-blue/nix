@@ -15,6 +15,7 @@
     typos-lsp
     tinymist # typst language service
     lua51Packages.lua-lsp # neovim targets lua 5.1
+	openscad-lsp
     vale-ls # prose checker
     codebook # spell checker
     pegviz # visualizer for peg parser

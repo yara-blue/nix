@@ -267,7 +267,8 @@
     defaultApplications = {
       # file --mime-type -b
       "application/*.document" = "libreoffice.desktop";
-      "image/*" = "qimgv.desktop";
+	  # wildcards like * do not work sadly :( 
+      "image/jpeg" = "qimgv.desktop";
       "text/html" = "firefox.desktop";
       "application/pdf" = "zathura.desktop";
       "x-scheme-handler/http" = "firefox.desktop";

@@ -7,6 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "diff_view_style": "unified",
   "ssh_connections": [
     {
       "host": "asgard",
@@ -43,7 +44,7 @@
   "disable_ai": false,
   "agent": {
     "dock": "right",
-    "default_profile": "ask",
+    "default_profile": "write",
     "tool_permissions": {
       "default": "confirm",
       "tools": {}
