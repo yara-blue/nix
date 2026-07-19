@@ -8,11 +8,9 @@
 }:
 {
   environment.systemPackages = with pkgs; [
-    zed-editor # cant log in
     inputs.tracy.packages.${pkgs.system}.default
     easyeffects
     inkscape
-    # inputs.zed.packages.${pkgs.system}.default
 
     libreoffice
 

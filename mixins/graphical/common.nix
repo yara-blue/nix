@@ -8,7 +8,6 @@
 }:
 {
   environment.systemPackages = with pkgs; [
-    vencord
     fluffychat
     firefox
     pavucontrol

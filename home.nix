@@ -60,7 +60,6 @@
   };
 
   # home manager specialisations are experimental,
-  #
   specialisation.day.configuration = {
     stylix.targets.vesktop.enable = false;
     stylix.targets.vesktop.colors.enable = false;
@@ -70,6 +69,7 @@
 
   programs.nixcord = {
     enable = true;
+	discord.vencord.enable = true;
     vesktop.enable = true;
 
     config = {
