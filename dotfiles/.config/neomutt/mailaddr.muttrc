@@ -1,3 +1,5 @@
+# vim: filetype=muttrc
+
 set realname = "Yara"
 
 set imap_user = `pass mail/imap_user`
@@ -10,7 +12,11 @@ set smtp_pass = `pass mail/login.mailbox.org | head -n 1`
 set folder = "imaps://imap.mailbox.org:993"
 set spoolfile = "+INBOX"
 set postponed = "+Drafts"   # drafts
-set record = "+Sent"        # outgoing messages
 set trash = "+Trash"        # trash
+
+# To store a copy of outgoing messages in the folder they were composed in
+folder-hook . 'set record=^'
+# set record = "+Sent"        # outgoing messages (classic send folder instead
+#                               use above)
 
 mailboxes `pass mail/mailboxes`

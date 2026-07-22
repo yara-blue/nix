@@ -38,6 +38,8 @@
     ./vim_theme.nix
   ];
 
+  home.pointerCursor.enable = true;
+
   stylix.cursor.package = pkgs.rose-pine-cursor;
   stylix.cursor.name = "BreezeX-RosePineDawn-Linux"; # dark: BreezeX-RosePine-Linux
   stylix.cursor.size = 24;
