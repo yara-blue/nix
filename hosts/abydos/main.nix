@@ -69,7 +69,7 @@
 
   services.go-to-bed = {
     enable = true;
-    time = "00:50";
+    time = "01:50";
   };
   services.startup-sound = {
     enable = true;
@@ -96,16 +96,16 @@
 
   # NFS shares are lazy-mounted via systemd automount so a downed NAS
   # never blocks boot. They mount on first access and unmount when idle.
-  fileSystems."/home/yara/Documents2" = {
+  fileSystems."/home/yara/Documents" = {
     device = "asgard:/home/yara/Documents";
     fsType = "nfs4";
     options = [ "nofail" ];
   };
-  # fileSystems."/home/yara/Prive" = {
-  #   device = "asgard:/home/yara/prive";
-  #   fsType = "nfs4";
-  #   options = ["nofail"];
-  # };
+  fileSystems."/home/yara/Prive" = {
+    device = "asgard:/home/yara/prive";
+    fsType = "nfs4";
+    options = [ "nofail" ];
+  };
   fileSystems."/home/yara/Videos/Series" = {
     device = "asgard:/srv/videos/series";
     fsType = "nfs4";

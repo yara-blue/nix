@@ -11,10 +11,10 @@
     zoxide
     direnv
     git
-	gh # official command line interface to github :(
+    gh # official command line interface to github :(
     eza
     bat
-	hexyl # hex editor
+    hexyl # hex editor
     usbutils
     htop
     btop
@@ -22,12 +22,12 @@
     ripgrep
     ast-grep
     neomutt
-	abook
+    abook
     fd
     hyperfine
     tokei
     watchexec
-	file
+    file
 
     pass
     gnupg
@@ -41,19 +41,19 @@
     samply
 
     neovim
-	helix
+    helix
     websocat # used for typst preview from neovim
     neomutt
 
     md-to-pdf
 
     killall
-	procps # pkill etc
+    procps # pkill etc
     fish
     zsh
     bash
-	starship
-	starship-jj
+    starship
+    starship-jj
 
     bind # contains nslookup, host, dig etc
     curl
@@ -72,20 +72,20 @@
 
     trashy
 
-	# download & control cameras
-	gphoto2
-	# compress photos
-	imagemagick # provides mogrify for compression
-	jpegoptim
+    # download & control cameras
+    gphoto2
+    # compress photos
+    imagemagick # provides mogrify for compression
+    jpegoptim
 
     git-undeadname
 
     nix-output-monitor
     comma
 
-	# comics
-	comic-mandown
-	kcc # convert for epaper displays
+    # comics
+    comic-mandown
+    kcc # convert for epaper displays
   ];
 
   # Yubikey
@@ -96,15 +96,19 @@
     pkgs.rtl-sdr
     pkgs.gqrx
   ];
+  # udev rule to allow flashing an esp32
+  services.udev.extraRules = ''
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="303a", ATTRS{idProduct}=="1001", GROUP="plugdev", MODE="0666"
+  '';
 
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
-    # pinentryPackage = pkgs.pinentry-tty;
+    pinentryPackage = pkgs.pinentry-tty;
   };
 
   imports = [
-  	./prompt.nix
+    ./prompt.nix
   ];
 
   # use gpg as ssh agent

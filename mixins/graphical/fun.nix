@@ -11,14 +11,19 @@
     kodi
     freetube
     telegram-desktop
-	signal-desktop
+    signal-desktop
 
     # gaming
-    steam
     prismlauncher
 
     # software defined radio
     gqrx
     rtl-sdr
   ];
+
+  programs.steam = {
+    enable = true;
+	protontricks.enable = true;
+  };
+  programs.gamemode.enable = true;
 }

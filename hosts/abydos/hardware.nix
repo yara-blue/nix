@@ -16,7 +16,8 @@
   boot.loader.systemd-boot.configurationLimit = 30;
   boot.loader.timeout = 10; # seconds (screen can be slow to turn on)
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.plymouth = { #FIXME
+  boot.plymouth = {
+    # FIXME
     enable = true;
     theme = "blahaj";
     themePackages = with pkgs; [
@@ -48,15 +49,12 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/mapper/luks-68d7c2b4-7bbb-4f4a-ab32-41b812561a00";
+    device = "/dev/disk/by-label/abydos-nixos";
     fsType = "ext4";
   };
 
-  boot.initrd.luks.devices."luks-68d7c2b4-7bbb-4f4a-ab32-41b812561a00".device =
-    "/dev/disk/by-uuid/68d7c2b4-7bbb-4f4a-ab32-41b812561a00";
-
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/B07D-70A7";
+    device = "/dev/disk/by-label/abydos-boot";
     fsType = "vfat";
     options = [
       "fmask=0077"
@@ -64,7 +62,11 @@
     ];
   };
 
-  swapDevices = [ ];
+  swapDevices = [
+    {
+      device = "/dev/disk/by-label/abydos-swap";
+    }
+  ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

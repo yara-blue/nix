@@ -38,13 +38,13 @@ in
   boot.zfs.forceImportRoot = false;
 
   systemd.services.zfs-mount.enable = false;
-  fileSystems."/home/yara/Projects" = {
-    device = "home/Projects";
+  fileSystems."/games" = {
+    device = "abydos-pool/games";
     fsType = "zfs";
     options = [ "zfsutil" ];
   };
-  fileSystems."/home/yara/tmp" = {
-    device = "home/tmp";
+  fileSystems."/home/yara/Projects" = {
+    device = "abydos-pool/projects";
     fsType = "zfs";
     options = [ "zfsutil" ];
   };
