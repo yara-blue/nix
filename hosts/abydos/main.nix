@@ -101,11 +101,6 @@
     fsType = "nfs4";
     options = [ "nofail" ];
   };
-  fileSystems."/home/yara/Prive" = {
-    device = "asgard:/home/yara/prive";
-    fsType = "nfs4";
-    options = [ "nofail" ];
-  };
   fileSystems."/home/yara/Videos/Series" = {
     device = "asgard:/srv/videos/series";
     fsType = "nfs4";

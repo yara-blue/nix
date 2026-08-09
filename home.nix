@@ -71,7 +71,7 @@
 
   programs.nixcord = {
     enable = true;
-	discord.vencord.enable = true;
+    discord.vencord.enable = true;
     vesktop.enable = true;
 
     config = {
@@ -114,13 +114,13 @@
           "$(${pkgs.coreutils}/bin/cut -d ':' -f 1 /run/agenix/mc-server-address)" \
           "$(${pkgs.coreutils}/bin/cut -d ':' -f 2 /run/agenix/mc-server-address)"
       '';
-	  ha-text-widget = pkgs.writeShellScriptBin "ha-text-widget-wrapped" ''
-	    exec ${pkgs.text-widget}/bin/ha-text-widget \
-          "$(${pkgs.coreutils}/bin/cut -d ':' -f 1 /run/agenix/mc-server-address)" \
-          "$(${pkgs.coreutils}/bin/cut -d ':' -f 2 /run/agenix/mc-server-address)"
-		  
-	${pkgs.text-widget}/bin/ha-text-widget --server 192.168.1.43:1235 temp hum co2 pm25
-	  '';
+      ha-text-widget = pkgs.writeShellScriptBin "ha-text-widget-wrapped" ''
+        	    exec ${pkgs.text-widget}/bin/ha-text-widget \
+                  "$(${pkgs.coreutils}/bin/cut -d ':' -f 1 /run/agenix/mc-server-address)" \
+                  "$(${pkgs.coreutils}/bin/cut -d ':' -f 2 /run/agenix/mc-server-address)"
+        		  
+        	${pkgs.text-widget}/bin/ha-text-widget --server 192.168.1.43:1235 temp hum co2 pm25
+        	  '';
     in
     {
       enable = true;
@@ -269,7 +269,7 @@
     defaultApplications = {
       # file --mime-type -b
       "application/*.document" = "libreoffice.desktop";
-	  # wildcards like * do not work sadly :( 
+      # wildcards like * do not work sadly :(
       "image/jpeg" = "qimgv.desktop";
       "text/html" = "firefox.desktop";
       "application/pdf" = "zathura.desktop";
