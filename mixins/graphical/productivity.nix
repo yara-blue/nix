@@ -8,7 +8,6 @@
 }:
 {
   environment.systemPackages = with pkgs; [
-    inputs.tracy.packages.${pkgs.system}.default
     easyeffects
     inkscape
 

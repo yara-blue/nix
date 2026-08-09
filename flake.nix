@@ -20,7 +20,6 @@
     break-enforcer.url = "github:evavh/break-enforcer";
     break-enforcer.inputs.nixpkgs.follows = "nixpkgs";
     home-automation.url = "github:yara-blue/HomeAutomation";
-    tracy.url = "github:tukanoidd/tracy.nix";
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
