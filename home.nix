@@ -205,6 +205,9 @@
     enable = true;
     configPath = "${config.xdg.configHome}/mozilla/firefox";
     nativeMessagingHosts = [ pkgs.passff-host ];
+    policies."3rdparty".Extensions."leechblockng@proginosko.com" = {
+      setName1 = "does_this_work";
+    };
     profiles.default = {
       id = 0;
       name = "default";
