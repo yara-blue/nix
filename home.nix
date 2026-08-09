@@ -328,27 +328,20 @@
   };
 
   home.file = builtins.listToAttrs (
-    map
-      (
-        path:
-        let
-          f = lib.strings.removePrefix (inputs.self + "/dotfiles/") (toString path);
-        in
-        {
-          name = f;
-          value = {
-            source = config.lib.file.mkOutOfStoreSymlink (
-              config.home.sessionVariables.NIX_CONF_DIR + "/dotfiles/" + f
-            );
-          };
-        }
-      )
-      (
-        builtins.filter # TODO remove we do not need this anymore
-          # Excluded because we gotta do some magic below
-          (p: toString p != toString ./dotfiles/.config/nvim/init.lua)
-          (lib.filesystem.listFilesRecursive ./dotfiles)
-      )
+    map (
+      path:
+      let
+        f = lib.strings.removePrefix (inputs.self + "/dotfiles/") (toString path);
+      in
+      {
+        name = f;
+        value = {
+          source = config.lib.file.mkOutOfStoreSymlink (
+            config.home.sessionVariables.NIX_CONF_DIR + "/dotfiles/" + f
+          );
+        };
+      }
+    ) (lib.filesystem.listFilesRecursive ./dotfiles)
   ); # dotfiles dir is in the same directory this file
 
   # stylix may needd this
