@@ -31,11 +31,11 @@
   imports = [
     inputs.nixcord.homeModules.nixcord
     inputs.playground.homeModules.default
-    ./git.nix
-    ./nfs.nix
-    ./nvim.nix
-    ./eza_theme.nix
-    ./vim_theme.nix
+    ./home/git.nix
+    ./home/nfs.nix
+    ./home/nvim.nix
+    ./home/eza_theme.nix
+    ./home/vim_theme.nix
   ];
 
   home.pointerCursor.enable = true;
