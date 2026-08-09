@@ -2,6 +2,7 @@
   inputs,
   config,
   pkgs,
+  hostname,
   lib,
   stylix,
   ...
@@ -29,6 +30,7 @@
   };
 
   imports = [
+    inputs.agenix-rekey.homeManagerModules.default
     inputs.nixcord.homeModules.nixcord
     inputs.playground.homeModules.default
     ./home/git.nix
@@ -37,6 +39,43 @@
     ./home/eza_theme.nix
     ./home/vim_theme.nix
   ];
+
+  # keys to use for decryption, needed since mine are not named like id_rsa.pub
+  age.identityPaths =
+    let
+      id =
+        {
+          "work" = "${config.home.homeDirectory}/.ssh/abydos";
+          "abydos" = "${config.home.homeDirectory}/.ssh/abydos";
+        }
+        ."${hostname}";
+    in
+    [ id ];
+  age.rekey =
+    let
+      yubikey1 = ./age-yubikey-identity-1b1c41c4.pub;
+      yubikey2 = ./age-yubikey-identity-3035da2f.pub;
+      # These must be keys readable to the user. These are not system keys like
+      # for the agenix rekey setup in NixOs (mixins/common.nix)
+      hostPubkey =
+        {
+          # TODO replace this key with the laptop one
+          "work" =
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKvUWV6S+4jU7ilsQ3kNR05VjyAh86tNm4WuUcP5Rq8M yara@abydos";
+          "abydos" =
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKvUWV6S+4jU7ilsQ3kNR05VjyAh86tNm4WuUcP5Rq8M yara@abydos";
+        }
+        ."${hostname}";
+    in
+    {
+      inherit hostPubkey;
+      masterIdentities = [
+        yubikey1
+        yubikey2
+      ];
+      storageMode = "local";
+      localStorageDir = ./. + "/secrets/home/rekeyed/${hostname}/${config.home.username}";
+    };
 
   home.pointerCursor.enable = true;
 

@@ -110,7 +110,10 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.yara = ./home.nix;
+              home-manager.users.yara.imports = [
+			    inputs.ragenix.homeManagerModules.default
+                ./home.nix
+              ];
             }
             {
               home-manager.extraSpecialArgs = {
