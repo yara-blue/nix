@@ -82,7 +82,7 @@
     owner = "yara";
     group = "users";
     mode = "400";
-    rekeyFile = ./. + "/../secrets/mc-server-address.age";
+    rekeyFile = ./../secrets/system/mc-server-address.age;
   };
 
   specialisation.day.configuration = {

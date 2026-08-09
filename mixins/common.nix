@@ -98,6 +98,8 @@
 
   age.rekey =
     let
+      yubikey1 = ../age-yubikey-identity-1b1c41c4.pub;
+      yubikey2 = ../age-yubikey-identity-3035da2f.pub;
       hostPubkey =
         {
           "work" =
@@ -108,13 +110,13 @@
         ."${hostname}";
     in
     {
-	  inherit hostPubkey;
+      inherit hostPubkey;
       masterIdentities = [
-        /home/yara/nix/age-yubikey-identity-1b1c41c4.pub # TODO path
-        /home/yara/nix/age-yubikey-identity-3035da2f.pub # TODO path
+        yubikey1
+        yubikey2
       ];
       storageMode = "local";
-      localStorageDir = ./. + "/../secrets/rekeyed/${config.networking.hostName}";
+      localStorageDir = ./. + "/../secrets/system/rekeyed/${hostname}";
     };
 
   # users.users.root.hashedPasswordFile = config.age.secrets.root-pw-hash.path;

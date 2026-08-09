@@ -64,6 +64,6 @@ in
     owner = "yara";
     group = "users";
     mode = "400";
-    rekeyFile = ./. + "/../secrets/keytab.age";
+    rekeyFile = ./../secrets/system/keytab.age;
   };
 }
