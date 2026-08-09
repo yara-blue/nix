@@ -38,6 +38,7 @@
     ./home/nvim.nix
     ./home/eza_theme.nix
     ./home/vim_theme.nix
+    ./home/todoman.nix
   ];
 
   # keys to use for decryption, needed since mine are not named like id_rsa.pub

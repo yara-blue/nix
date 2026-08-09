@@ -44,6 +44,7 @@
     helix
     websocat # used for typst preview from neovim
     neomutt
+	pimsync
 
     md-to-pdf
 

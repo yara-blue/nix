@@ -39,7 +39,9 @@
     "ctrlc" = "wl-copy";
     "ctrlv" = "wl-paste";
 
-	"big" = "alacritty msg config font.size=30";
+    "todo" = "pimsync sync && todo";
+
+    "big" = "alacritty msg config font.size=30";
   };
 
   fonts.packages = with pkgs; [
@@ -64,7 +66,7 @@
   # enable usb automount
   services.devmon.enable = true;
   services.gvfs.enable = true;
-  services.tumbler.enable =true; # thumbnail support
+  services.tumbler.enable = true; # thumbnail support
   services.udisks2.enable = true;
 
   environment.sessionVariables = {
