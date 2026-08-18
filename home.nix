@@ -305,19 +305,12 @@
         }
       )
       (
-        builtins.filter
+        builtins.filter # TODO remove we do not need this anymore
           # Excluded because we gotta do some magic below
           (p: toString p != toString ./dotfiles/.config/nvim/init.lua)
           (lib.filesystem.listFilesRecursive ./dotfiles)
       )
   ); # dotfiles dir is in the same directory this file
-
-  # programs.neovim generates its own init.lua; force the symlink to win
-  xdg.configFile."nvim/init.lua" = lib.mkForce {
-    source = config.lib.file.mkOutOfStoreSymlink (
-      config.home.sessionVariables.NIX_CONF_DIR + "/dotfiles/.config/nvim/init.lua"
-    );
-  };
 
   # stylix may needd this
   # gtk.gtk4.theme = config.gtk.theme;

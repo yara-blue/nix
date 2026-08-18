@@ -30,7 +30,7 @@
     "gpf" = "git push --force-with-lease";
 
     # other
-    "v" = "nvim";
+    "v" = "nix run ~/Projects/yi/.";
     "m" = "neomutt";
     "la" = "exa -la";
     "ls" = "exa";
@@ -68,8 +68,8 @@
   services.udisks2.enable = true;
 
   environment.sessionVariables = {
-    VISUAL = "nvim";
-    EDITOR = "nvim";
+    VISUAL = "v";
+    EDITOR = "v";
   };
 
   networking.extraHosts = ''
