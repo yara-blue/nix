@@ -62,6 +62,14 @@
     ];
   };
 
+  networking = {
+    interfaces.enp9s0.wakeOnLan = {
+      enable = true;
+      policy = [ "magic" ];
+    };
+    firewall.allowedUDPPorts = [ 9 ];
+  };
+
   swapDevices = [
     {
       device = "/dev/disk/by-label/abydos-swap";
