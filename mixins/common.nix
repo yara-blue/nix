@@ -39,8 +39,6 @@
     "ctrlc" = "wl-copy";
     "ctrlv" = "wl-paste";
 
-    "todo" = "pimsync sync && todo";
-
     "big" = "alacritty msg config font.size=30";
   };
 
