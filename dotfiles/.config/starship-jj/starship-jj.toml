@@ -26,6 +26,7 @@ color = "#1F3E5A"
 behind_symbol = "+"
 surround_with_quotes = false
 ignore_empty_commits = "None"
+max_bookmarks = 2
 
 [[module]]
 type = "State"
