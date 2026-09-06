@@ -5,7 +5,6 @@
 }:
 
 {
-
   programs.todoman = {
     enable = true;
     extraConfig = ''
