@@ -131,7 +131,15 @@
     };
   };
 
+  programs.fish = {
+    preferAbbrs = true;
+    shellAbbrs.jd = {
+      expansion = "jj describe -m \"%\"";
+      setCursor = true;
     };
+    shellAbbrs.jdr = {
+      expansion = "jj describe -r % -m \"\"";
+      setCursor = true;
     };
   };
 
