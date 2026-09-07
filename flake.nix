@@ -8,6 +8,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-xr.url = "github:nix-community/nixpkgs-xr";
     rahul-config.url = "github:rrbutani/nix-config";
     flake-utils.url = "github:numtide/flake-utils";
     ragenix.url = "github:yaxitech/ragenix";
@@ -58,6 +59,7 @@
       home-automation,
       stylix,
       niri,
+	  nixpkgs-xr,
       ...
     }@inputs:
     let
@@ -94,6 +96,7 @@
         inputs.xkcd-font.overlays.default
         stable-packages
         unstable-packages
+		nixpkgs-xr.overlays.default
       ];
 
       machine =

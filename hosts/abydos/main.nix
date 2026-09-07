@@ -19,6 +19,7 @@
     ./../../mixins/graphical/productivity.nix
     ./../../mixins/graphical/common.nix
     ./../../mixins/graphical/fun.nix
+    # ./../../mixins/graphical/vr.nix # horribly broken do not use
   ];
 
   networking.hostName = hostname;
