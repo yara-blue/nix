@@ -141,6 +141,12 @@
       expansion = "jj describe -r % -m \"\"";
       setCursor = true;
     };
+    interactiveShellInit = ''
+      	    set -g fish_greeting (todo list --startable | shuf -n 1)
+      		if test -n "$task"
+      			echo $task
+      		end
+      	  '';
   };
 
   programs.alacritty = {
