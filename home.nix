@@ -18,17 +18,6 @@
     pkgs.atuin
   ];
 
-  services.gammastep.settings = {
-    enable = true;
-    provider = "manual";
-    latitude = "52.1326";
-    longitude = "5.2913";
-    temperature = {
-      day = 6500;
-      night = 3500;
-    };
-  };
-
   imports = [
     inputs.agenix-rekey.homeManagerModules.default
     inputs.nixcord.homeModules.nixcord
@@ -39,6 +28,8 @@
     ./home/eza_theme.nix
     ./home/vim_theme.nix
     ./home/todoman.nix
+    ./home/firefox.nix
+    ./home/desktop_and_styling.nix
   ];
 
   # keys to use for decryption, needed since mine are not named like id_rsa.pub
@@ -77,29 +68,6 @@
       storageMode = "local";
       localStorageDir = ./. + "/secrets/home/rekeyed/${hostname}/${config.home.username}";
     };
-
-  home.pointerCursor.enable = true;
-
-  stylix.cursor.package = pkgs.rose-pine-cursor;
-  stylix.cursor.name = "BreezeX-RosePineDawn-Linux"; # dark: BreezeX-RosePine-Linux
-  stylix.cursor.size = 24;
-  stylix.targets = {
-    # native neovim themes better (highlight groups & more shades)
-    neovim.enable = false;
-    alacritty.fonts.override = {
-      size = 20; # I like it big
-    };
-    firefox.profileNames = [ "default" ];
-    waybar.opacity.override = {
-      desktop = 0.5;
-    };
-    # todo fix theming for light themes
-    # https://github.com/nix-community/stylix/pull/365/changes
-    nixcord.enable = false;
-    vesktop.enable = false;
-    vesktop.colors.enable = false;
-    nixcord.colors.enable = false;
-  };
 
   # home manager specialisations are experimental,
   specialisation.day.configuration = {
@@ -147,84 +115,6 @@
     };
   };
 
-  programs.waybar =
-    let
-      mc-player-count = pkgs.writeShellScriptBin "mc-player-count-wrapped" ''
-        exec ${pkgs.mc-player-count}/bin/mc-player-count \
-          "$(${pkgs.coreutils}/bin/cut -d ':' -f 1 /run/agenix/mc-server-address)" \
-          "$(${pkgs.coreutils}/bin/cut -d ':' -f 2 /run/agenix/mc-server-address)"
-      '';
-      ha-text-widget = pkgs.writeShellScriptBin "ha-text-widget-wrapped" ''
-        	    exec ${pkgs.text-widget}/bin/ha-text-widget \
-                  "$(${pkgs.coreutils}/bin/cut -d ':' -f 1 /run/agenix/mc-server-address)" \
-                  "$(${pkgs.coreutils}/bin/cut -d ':' -f 2 /run/agenix/mc-server-address)"
-        		  
-        	${pkgs.text-widget}/bin/ha-text-widget --server 192.168.1.43:1235 temp hum co2 pm25
-        	  '';
-    in
-    {
-      enable = true;
-      settings = {
-        mainBar = {
-          height = 26;
-          spacing = 13;
-          modules-left = [
-            "sway/workspaces"
-            "sway/mode"
-            "custom/break-enforcer"
-          ];
-          modules-center = [
-            "clock#LA"
-            "clock"
-          ];
-          modules-right =
-            [ ]
-            ++ (if true then [ "custom/minecraft-widget" ] else [ ])
-            ++ (if true then [ "custom/ha-text-widget" ] else [ ])
-            ++ [ "pulseaudio" ];
-
-          "sway/mode" = {
-            format = "<span style=\"italic\">{}</span>";
-          };
-          "sway/workspaces" = {
-            persistent-workspaces = {
-              "1" = [ ];
-              "2" = [ ];
-              "3" = [ ];
-              "4" = [ ];
-              "5" = [ ];
-            };
-          };
-          clock = {
-            tooltip-format = "<big>{:%Y
-				%B}</big>\n<tt><small>{calendar}</small></tt>";
-            format-alt = "{:%Y-%m-%d}";
-          };
-          "clock#LA" = {
-            timezone = "America/Los_Angeles";
-            tooltip-format = "<big>{:%Y
-				%B}</big>\n<tt><small>{calendar}</small></tt>";
-            format-alt = "{:%Y-%m-%d}";
-          };
-          pulseaudio = {
-            format = "{volume}%";
-          };
-          "custom/break-enforcer" = {
-            exec = "${pkgs.break-enforcer}/bin/break-enforcer status --update-period 1s";
-            format = "{}";
-          };
-          "custom/ha-text-widget" = {
-            exec = "${pkgs.text-widget}/bin/ha-text-widget --server 192.168.1.43:1235 temp hum co2 pm25";
-            format = "{}";
-          };
-          "custom/minecraft-widget" = {
-            exec = "${mc-player-count}/bin/mc-player-count-wrapped";
-            format = "{}";
-          };
-        };
-      };
-    };
-
   programs.atuin = {
     enable = true;
     enableBashIntegration = true;
@@ -241,83 +131,7 @@
     };
   };
 
-  programs.firefox = {
-    enable = true;
-    configPath = "${config.xdg.configHome}/mozilla/firefox";
-    nativeMessagingHosts = [ pkgs.passff-host ];
-    policies."3rdparty".Extensions."leechblockng@proginosko.com" = {
-      setName1 = "does_this_work";
     };
-    profiles.default = {
-      id = 0;
-      name = "default";
-      isDefault = true;
-      search = {
-        engines = {
-          "kagi" = {
-            urls = [ { template = "https://kagi.com/search?q={searchTerms}"; } ];
-            icon = "https://kagi.com/asset/4f24904/kagi_assets/logos/yellow_3.svg";
-            definedAliases = [ "@kagi" ];
-          };
-
-          "Nix Options" = {
-            urls = [
-              {
-                template = "https://search.nixos.org/options";
-                params = [
-                  {
-                    name = "type";
-                    value = "options";
-                  }
-                  {
-                    name = "query";
-                    value = "{searchTerms}";
-                  }
-                ];
-              }
-            ];
-            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-            definedAliases = [ "@no" ];
-          };
-          "Nix Packages" = {
-            urls = [
-              {
-                template = "https://search.nixos.org/packages";
-                params = [
-                  {
-                    name = "type";
-                    value = "packages";
-                  }
-                  {
-                    name = "query";
-                    value = "{searchTerms}";
-                  }
-                ];
-              }
-            ];
-            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-            definedAliases = [ "@np" ];
-          };
-        };
-        force = true;
-        default = "ddg";
-        order = [
-          "kagi"
-          "ddg"
-          "google"
-        ];
-      };
-      settings = {
-        extensions.autoDisableScopes = 0;
-        browser.search.defaultenginename = "kagi";
-      };
-      extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
-        ublock-origin
-        # TODO request adguard here https://gitlab.com/rycee/nur-expressions/-/issues
-        leechblock-ng
-        passff
-        vimium-c
-      ];
     };
   };
 
