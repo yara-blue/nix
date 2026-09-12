@@ -75,8 +75,8 @@
   services.udisks2.enable = true;
 
   environment.sessionVariables = {
-    VISUAL = "v";
-    EDITOR = "v";
+    VISUAL = "nix run ~/Projects/yi/.";
+    EDITOR = "nix run ~/Projects/yi/.";
   };
 
   networking.extraHosts = ''

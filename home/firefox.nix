@@ -1,12 +1,54 @@
 {
   config,
   pkgs,
+  inputs,
   ...
-}@inputs:
+}:
 
 {
   programs.firefox = {
     enable = true;
+    # fixefox must be unwrapped to be configured by home manager. This
+    # usus the nix function wrapFirefox to wap a unwrapped firefox post
+    # configuration?
+    package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
+      nativeMessagingHosts = [
+        pkgs.passff-host
+      ];
+      extraPolicies = {
+        AppAutoUpdate = false;
+        DisableFirefoxStudies = true;
+        DisablePocket = true;
+        DisableTelemetry = true;
+        UserMessaging = {
+          WhatsNew = true;
+          ExtensionRecommendations = false;
+          FeatureRecommendations = false;
+          UrlbarInterventions = false;
+          SkipOnboarding = true;
+          MoreFromMozilla = false;
+          Locked = true;
+        };
+        FirefoxHome = {
+          Search = true;
+          TopSites = false;
+          SponsoredTopSites = false;
+          SponsoredStories = false;
+          Highlights = false;
+          Pocket = false;
+          SponsoredPocket = false;
+          Snippets = false;
+          Locked = true;
+        };
+        FirefoxSuggest = {
+          WebSuggestions = false;
+          SponsoredSuggestions = false;
+          ImproveSuggest = false;
+          Locked = true;
+        };
+      };
+    };
+
     configPath = "${config.xdg.configHome}/mozilla/firefox";
     nativeMessagingHosts = [ pkgs.passff-host ];
     policies."3rdparty".Extensions."leechblockng@proginosko.com" = {
@@ -105,37 +147,4 @@
     };
   };
 
-  services.gammastep.settings = {
-    enable = true;
-    provider = "manual";
-    latitude = "52.1326";
-    longitude = "5.2913";
-    temperature = {
-      day = 6500;
-      night = 3500;
-    };
-  };
-
-  home.pointerCursor.enable = true;
-
-  stylix.cursor.package = pkgs.rose-pine-cursor;
-  stylix.cursor.name = "BreezeX-RosePineDawn-Linux"; # dark: BreezeX-RosePine-Linux
-  stylix.cursor.size = 24;
-  stylix.targets = {
-    # native neovim themes better (highlight groups & more shades)
-    neovim.enable = false;
-    alacritty.fonts.override = {
-      size = 20; # I like it big
-    };
-    firefox.profileNames = [ "default" ];
-    waybar.opacity.override = {
-      desktop = 0.5;
-    };
-    # todo fix theming for light themes
-    # https://github.com/nix-community/stylix/pull/365/changes
-    nixcord.enable = false;
-    vesktop.enable = false;
-    vesktop.colors.enable = false;
-    nixcord.colors.enable = false;
-  };
 }

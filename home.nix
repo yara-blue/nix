@@ -29,7 +29,7 @@
     ./home/vim_theme.nix
     ./home/todoman.nix
     ./home/firefox.nix
-    ./home/desktop_and_styling.nix
+    ./home/desktop.nix
   ];
 
   # keys to use for decryption, needed since mine are not named like id_rsa.pub
@@ -132,6 +132,7 @@
   };
 
   programs.fish = {
+    enable = true;
     preferAbbrs = true;
     shellAbbrs.jd = {
       expansion = "jj describe -m \"%\"";
@@ -141,12 +142,29 @@
       expansion = "jj describe -r % -m \"\"";
       setCursor = true;
     };
+    shellInit = "fish_vi_key_bindings";
     interactiveShellInit = ''
       	    set -g fish_greeting (todo list --startable | shuf -n 1)
       		if test -n "$task"
       			echo $task
       		end
       	  '';
+    plugins =
+      with pkgs.fishPlugins;
+      let
+        mkPlugin = p: {
+          inherit (p) src;
+          name = "${p.pname}";
+        };
+      in
+      (map mkPlugin [
+        puffer # (!! !$ ..+ etc)
+        done # notify when long running command done
+        fish-you-should-use
+        colored-man-pages
+        autopair # try pisces?
+        # sponge   # remove failed commands from history
+      ]);
   };
 
   programs.alacritty = {
