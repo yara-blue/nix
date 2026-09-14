@@ -2,9 +2,67 @@
   config,
   pkgs,
   inputs,
+  lib,
   ...
 }:
-
+with lib.asserts;
+with lib;
+let
+  rustIcon = pkgs.fetchurl {
+    url = "https://www.rust-lang.org/logos/rust-logo-512x512.png";
+    hash = "sha256-OMCHM0RNhnO2bh6eZ0ILRi3Q5VZ76hjYTaexHRyM8Rg=";
+  };
+  rust_api_search =
+    { channel, library }:
+    let
+      prefix =
+        if channel == "nightly" then
+          "n"
+        else if channel == "beta" then
+          "b"
+        else
+          "";
+    in
+    {
+      "Rust search ${channel} ${library} API" = {
+        urls = [
+          {
+            template = "https://doc.rust-lang.org/${channel}/${library}/index.html";
+            params = [
+              {
+                name = "search";
+                value = "{searchTerms}";
+              }
+            ];
+          }
+        ];
+        icon = rustIcon;
+        definedAliases = [ "@${prefix}${library}" ];
+      };
+    };
+  combinations = builtins.concatLists (
+    map
+      (
+        channel:
+        map
+          (library: {
+            channel = channel;
+            library = library;
+          })
+          [
+            "std"
+            "core"
+            "alloc"
+          ]
+      )
+      [
+        "stable"
+        "nightly"
+        "beta"
+      ]
+  );
+  rust_search_engines = mergeAttrsList (map rust_api_search combinations);
+in
 {
   programs.firefox = {
     enable = true;
@@ -110,10 +168,6 @@
                 template = "https://home-manager-options.extranix.com/?release=master";
                 params = [
                   {
-                    name = "type";
-                    value = "packages";
-                  }
-                  {
                     name = "query";
                     value = "{searchTerms}";
                   }
@@ -123,8 +177,8 @@
             icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             definedAliases = [ "@ho" ];
           };
-
-        };
+        }
+        // rust_search_engines;
         force = true;
         default = "ddg";
         order = [
