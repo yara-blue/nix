@@ -50,6 +50,9 @@ include /etc/sway/config-vars.d/*
 #
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 output * scale 1.4
+output DP-2 {
+	mode 3840x2160@120Hz
+}
 output HDMI-A-1 {
 	mode 3840x2160@120Hz
 	render_bit_depth 10
