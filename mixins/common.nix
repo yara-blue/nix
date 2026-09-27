@@ -30,12 +30,12 @@
     "gp" = "git push";
     "gpf" = "git push --force-with-lease";
 
-	# jj abbreviations
-	"js" = "jj status";
-	"jd" = "jj describe -m";
-	"jdr" = "jj describe -r";
-	"jn" = "jj edit @+";
-	"jp" = "jj edit @+";
+    # jj abbreviations
+    "js" = "jj status";
+    "jd" = "jj describe -m";
+    "jdr" = "jj describe -r";
+    "jn" = "jj edit @+";
+    "jp" = "jj edit @+";
 
     # other
     "v" = "nix run ~/Projects/yi/.";
