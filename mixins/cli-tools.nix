@@ -102,6 +102,7 @@
     SUBSYSTEMS=="usb", ATTRS{idVendor}=="303a", ATTRS{idProduct}=="1001", GROUP="plugdev", MODE="0666"
   '';
 
+  programs.adb.enable = true;
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;

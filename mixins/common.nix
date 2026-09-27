@@ -11,6 +11,7 @@
 {
 
   users.users.yara.isNormalUser = true;
+  users.users.yara.extraGroups = [ "adbusers" ];
   users.defaultUserShell = pkgs.fish;
 
   programs = {
