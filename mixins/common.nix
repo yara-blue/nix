@@ -33,6 +33,7 @@
     # jj abbreviations
     "js" = "jj status";
     "jd" = "jj describe -m";
+    "jf" = "jj diff";
     "jdr" = "jj describe -r";
     "jn" = "jj edit @+";
     "jp" = "jj edit @+";

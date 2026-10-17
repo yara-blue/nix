@@ -133,7 +133,6 @@
 
   programs.fish = {
     enable = true;
-    preferAbbrs = true;
     shellAbbrs.jd = {
       expansion = "jj describe -m \"%\"";
       setCursor = true;

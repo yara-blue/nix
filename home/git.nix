@@ -1,4 +1,29 @@
 { pkgs, config, ... }:
+let
+  diff-formatter = pkgs.writeShellApplication {
+    name = "adaptive-diff-formatter";
+    runtimeInputs = [
+      pkgs.difftastic
+      pkgs.gawk
+      pkgs.coreutils
+      pkgs.ncurses
+    ];
+    text = ''
+      widest=$(
+        difft --color never --tab-width 2 --display side-by-side "$1" "$2" |
+          awk 'length > max { max = length } END { print max+0 }'
+      )
+
+      if [ "$widest" -gt "$(tput cols)" ]; then
+        display=inline
+      else
+        display=side-by-side
+      fi
+
+      exec difft --color always --tab-width 2 --display "$display" "$1" "$2"
+    '';
+  };
+in
 {
 
   home.shell.enableFishIntegration = true;
@@ -20,13 +45,6 @@
     ignores = [
       ".direnv"
     ];
-    # signing = { #soon tm
-    # format = "ssh";
-    # TODO add private key to agenix (now in .ssh on the work system)
-    # https://developers.yubico.com/SSH/Securing_git_with_SSH_and_FIDO2.html
-    # key = "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIOcnSx0wDTKZr4i4YZXosm+zgMsRZfFhmHEtgBpTwIIZAAAABHNzaDo= Git signing key git@yara.blue";
-    # signByDefault = true;
-    # };
   };
 
   programs.direnv = {
@@ -43,11 +61,6 @@
         email = "git@yara.blue";
         name = "Yara";
       };
-      # signing = {
-      #   behavior = "own";
-      #   backend = "ssh";
-      #   key = "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIOcnSx0wDTKZr4i4YZXosm+zgMsRZfFhmHEtgBpTwIIZAAAABHNzaDo= Git signing key git@yara.blue";
-      # };
 
       git = {
         private-commits = "description(glob:'wip:*') | description(glob:'trial:*')";
@@ -62,16 +75,22 @@
       };
 
       ui = {
-        paginate = "never";
+        # overridden for pager (see below)
+        paginate = "auto";
         # pager = "${pkgs.delta}/bin/delta";
         # for delta
         # diff-formatter = ":git";
         diff-formatter = [
-          "${pkgs.difftastic}/bin/difft"
-          "--color=always"
+          "${diff-formatter}/bin/adaptive-diff-formatter"
           "$left"
           "$right"
         ];
+        # diff-formatter
+        #       "${pkgs.difftastic}/bin/difft"
+        #       "--color=always"
+        #       "$left"
+        #       "$right"
+        #     ];
 
         default-command = [
           "log"
