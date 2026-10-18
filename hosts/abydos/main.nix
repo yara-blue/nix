@@ -83,6 +83,8 @@
     openssh.authorizedKeys.keys = [
       # laptop hexcat
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKked5UDb893TUhcatCEqcUWqZE0dbfnoG4UjJQtXXnC"
+      # Prometheus
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHkCxMrxeqr3rQxr+iG7SQGd8BEcjRiUCPWj5KH4Ugvc root@prometheus"
     ];
     extraGroups = [
       "networkmanager"
