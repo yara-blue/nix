@@ -168,6 +168,9 @@
 
   programs.alacritty = {
     enable = true;
+	settings = {
+		terminal.osc52 = "CopyPaste";
+	};
   };
 
   xdg.mime.enable = true;
